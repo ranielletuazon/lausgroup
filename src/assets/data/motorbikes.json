@@ -1,0 +1,34 @@
+[
+    {
+        "brandName": "Aprilia Pampanga",
+        "logoImage": "aprillalogo.jpg"
+    },
+    {
+        "brandName": "BMW Motorrad",
+        "logoImage": "bmwmotorlogo.jpg"
+    },
+    {
+        "brandName": "Moto Guzzi Pampanga",
+        "logoImage": ""
+    },
+    {
+        "brandName": "Harley-Davidson Pampanga",
+        "logoImage": "harleylogo.jpg"
+    },
+    {
+        "brandName": "Vespa",
+        "logoImage": "vespalogo.jpg"
+    },
+    {
+        "brandName": "Peugeot Motorcycles",
+        "logoImage": "peugeotmotorlogo.jpg"
+    },
+    {
+        "brandName": "CFMoto",
+        "logoImage": "cfmotologo.jpg"
+    },
+    {
+        "brandName": "Triumph",
+        "logoImage": "triumphlogo.jpg"
+    }
+]

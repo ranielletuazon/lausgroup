@@ -1,0 +1,27 @@
+[
+    {
+        "brandName": "The Coffee Bean & Tea Leaf",
+        "logoImage": "coffeelogo.jpg",
+        "category": "Restaurants"
+    },
+    {
+        "brandName": "Nono's Comfort Kitchen & Bakery",
+        "logoImage": "nonoslogo.jpg",
+        "category": "Restaurants"
+    },
+    {
+        "brandName": "Max's Restaurant",
+        "logoImage": "maxslogo.jpg",
+        "category": "Restaurants"
+    },
+    {
+        "brandName": "Yellow Cab - Pizza Co.",
+        "logoImage": "yellowcablogo.jpg",
+        "category": "Restaurants"
+    },
+    {
+        "brandName": "Pancake House",
+        "logoImage": "pancakelogo.jpg",
+        "category": "Restaurants"
+    }
+]

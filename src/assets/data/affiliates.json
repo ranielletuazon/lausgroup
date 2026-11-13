@@ -1,0 +1,62 @@
+[
+    {
+        "brandName": "Corporate Guarantee",
+        "logoImage": "corporateguaranteelogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Carmix",
+        "logoImage": "carmixlogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "LausGroup Event Centre",
+        "logoImage": "lgeclogo.jpg",
+        "category": "Event Centre"
+    },
+    {
+        "brandName": "Laus Auto Services",
+        "logoImage": "laslogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Laus Auto Finance",
+        "logoImage": "laflogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Microtel Pampanga",
+        "logoImage": "microtellogo.jpg",
+        "category": "Hotel"
+    },
+    {
+        "brandName": "Family Ville Lubao",
+        "logoImage": "familyvillelogo.jpg",
+        "category": "Real Estate"
+    },
+    {
+        "brandName": "Carworld Caltext Station Inc.",
+        "logoImage": "carworldcaltexlogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Hüper Optik",
+        "logoImage": "huperlogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Goodyear Autocare - Tire City Inc",
+        "logoImage": "goodyearlogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Voltronic - Schmierstoffe Deutschland",
+        "logoImage": "voltroniclogo.jpg",
+        "category": "Auto Industry"
+    },
+    {
+        "brandName": "Yokohama Pampanga - Tire City",
+        "logoImage": "yokohamalogo.jpg",
+        "category": "Auto Industry"
+    }
+]

@@ -1,0 +1,78 @@
+[
+    {
+        "brandName": "Baic",
+        "logoImage": "baiclogo.jpg"
+    },
+    {
+        "brandName": "BMW",
+        "logoImage": "bmwlogo.jpg"
+    },
+    {
+        "brandName": "Changhe Automobile",
+        "logoImage": "changhelogo.jpg"
+    },
+    {
+        "brandName": "Chery",
+        "logoImage": "cherylogo.jpg"
+    },
+    {
+        "brandName": "Chevrolet",
+        "logoImage": "chevroletlogo.jpg"
+    },
+    {
+        "brandName": "Ford",
+        "logoImage": "fordlogo.jpg"
+    },
+    {
+        "brandName": "Geely",
+        "logoImage": "geelylogo.jpg"
+    },
+    {
+        "brandName": "Haima",
+        "logoImage": "haimalogo.jpg"
+    },
+    {
+        "brandName": "Hyundai",
+        "logoImage": "hyundailogo.jpg"
+    },
+    {
+        "brandName": "Jeep",
+        "logoImage": "jeeplogo.jpg"
+    },
+    {
+        "brandName": "Jetour",
+        "logoImage": "jetourlogo.jpg"
+    },
+    {
+        "brandName": "KIA",
+        "logoImage": "kialogo.jpg"
+    },
+    {
+        "brandName": "Lynk & Co",
+        "logoImage": "lynklogo.jpg"
+    },
+    {
+        "brandName": "Mazda",
+        "logoImage": "mazdalogo.jpg"
+    },
+    {
+        "brandName": "MINI",
+        "logoImage": "minilogo.jpg"
+    },
+    {
+        "brandName": "Mitsubishi Motors",
+        "logoImage": "mitsubishilogo.jpg"
+    },
+    {
+        "brandName": "Omoda Jaecoo",
+        "logoImage": "omodalogo.png"
+    },
+    {
+        "brandName": "Peugeot",
+        "logoImage": "peugeotlogo.jpg"
+    },
+    {
+        "brandName": "Suzuki",
+        "logoImage": "suzukilogo.jpg"
+    }
+]
