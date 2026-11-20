@@ -1,14 +1,17 @@
 [
     {
         "brandName": "Foton",
-        "logoImage": "fotonlogo.jpg"
+        "logoImage": "fotonlogo.jpg",
+        "href": "/foton"
     },
     {
         "brandName": "Fuso",
-        "logoImage": "fusologo.jpg"
+        "logoImage": "fusologo.jpg",
+        "href": "/fuso"
     },
     {
-        "brandName": "Hyundai - Trucks & Bus",
-        "logoImage": "hyundailogo.jpg"
+        "brandName": "Hyundai - T&B",
+        "logoImage": "hyundailogo.jpg",
+        "href": "/hyundai-trucks-and-bus"
     }
 ]

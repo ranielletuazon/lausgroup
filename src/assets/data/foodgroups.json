@@ -1,27 +1,84 @@
 [
     {
-        "brandName": "The Coffee Bean & Tea Leaf",
+        "brandName": "The Coffee Bean and Tea Leaf",
         "logoImage": "coffeelogo.jpg",
-        "category": "Restaurants"
+        "category": "Restaurants",
+        "href": "/the-coffee-bean-and-tea-leaf",
+        "banner": "",
+        "description": [],
+        "branches": [],
+        "mapEmbed": ""
     },
     {
         "brandName": "Nono's Comfort Kitchen & Bakery",
         "logoImage": "nonoslogo.jpg",
-        "category": "Restaurants"
+        "category": "Restaurants",
+        "href": "/nonos-comfort-kitchen-and-bakery",
+        "banner": "",
+        "description": [],
+        "branches": [],
+        "mapEmbed": ""
     },
     {
-        "brandName": "Max's Restaurant",
+        "brandName": "Max Restaurant",
         "logoImage": "maxslogo.jpg",
-        "category": "Restaurants"
+        "category": "Restaurants",
+        "href": "/max-restaurant",
+        "banner": "maxbanner.jpg",
+        "description": [],
+        "branches": [
+            {
+                "name": "Max's Restaurant – SM City Pampanga",
+                "address": "2nd Level, SM City Pampanga, City of San Fernando, Pampanga 2000, Philippines",
+                "phone": "+63 45 455 6377"
+            },
+            {
+                "name": "Max's Restaurant – SM City Clark",
+                "address": "G/F, SM City Clark, M. A. Roxas Highway, Brgy. Malabanias, Angeles City",
+                "phone": "+63 45 499 0061"
+            },
+            {
+                "name": "Max's Restaurant – SM City Cabanatuan",
+                "address": "Brgy. H. Concepcion, along Maharlika Highway, Cabanatuan City, Nueva Ecija",
+                "phone": "+63 44 600 0050"
+            },
+            {
+                "name": "Max's Restaurant – Bacolor",
+                "address": "Jose Abad Santos Avenue, Macabacle, Bacolor, Pampanga",
+                "phone": "+63 45 963 2020"
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1HlxRRyaO3PDZ6ryuRBC_GxZFkos1EMM4&ehbc=2E312F"
     },
     {
         "brandName": "Yellow Cab - Pizza Co.",
         "logoImage": "yellowcablogo.jpg",
-        "category": "Restaurants"
+        "category": "Restaurants",
+        "href": "/yellow-cab-pizza-co",
+        "banner": "",
+        "description": [],
+        "branches": [],
+        "mapEmbed": ""
     },
     {
         "brandName": "Pancake House",
         "logoImage": "pancakelogo.jpg",
-        "category": "Restaurants"
+        "category": "Restaurants",
+        "href": "/pancake-house",
+        "banner": "pancakebanner.jpg",
+        "description": [],
+        "branches": [
+            {
+                "name": "Pancake House LausGroup Complex",
+                "address": "The Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, San Jose, City of San Fernando, Pampanga",
+                "phone": "(063) 402 6933"
+            },
+            {
+                "name": "Pancake House Clark Auto Zone",
+                "address": "Ground Floor, LGC Automotive Services Bldg., M. A. Roxas Avenue, Clark Freeport Zone, Angeles City, 2023 Pampanga",
+                "phone": "(045) 499 8525 | +63 999 227 1415"
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1jfMuEb9a5CyTnwgrpc6lMWjEhvZPJ7E&ehbc=2E312F"
     }
 ]
