@@ -1,34 +1,47 @@
 [
     {
         "brandName": "Aprilia Pampanga",
-        "logoImage": "aprillalogo.jpg"
+        "logoImage": "aprillalogo.jpg",
+        "href": "/aprilia-pampanga"
     },
     {
-        "brandName": "BMW Motorrad",
-        "logoImage": "bmwmotorlogo.jpg"
+        "brandName": "BMW Pampanga Premier Motorrad",
+        "logoImage": "bmwmotorlogo.jpg",
+        "href": "/bmw-pampanga-premier-motorrad"
     },
     {
         "brandName": "Moto Guzzi Pampanga",
-        "logoImage": ""
+        "logoImage": "",
+        "href": "/moto-guzzi-pampanga"
     },
     {
         "brandName": "Harley-Davidson Pampanga",
-        "logoImage": "harleylogo.jpg"
+        "logoImage": "harleylogo.jpg",
+        "href": "/harley-davidson-of-pampanga"
     },
     {
-        "brandName": "Vespa",
-        "logoImage": "vespalogo.jpg"
+        "brandName": "Vespa Pampanga",
+        "logoImage": "vespalogo.jpg",
+        "href": "/vespa-pampanga"
     },
     {
         "brandName": "Peugeot Motorcycles",
-        "logoImage": "peugeotmotorlogo.jpg"
+        "logoImage": "peugeotmotorlogo.jpg",
+        "href": "/peugeot-motorcycles"
+    },
+    {
+        "brandName": "Piaggio Ape Pampanga",
+        "logoImage": "",
+        "href": "/piaggio-ape-pampanga"
     },
     {
         "brandName": "CFMoto",
-        "logoImage": "cfmotologo.jpg"
+        "logoImage": "cfmotologo.jpg",
+        "href": "/cfmoto"
     },
     {
-        "brandName": "Triumph",
-        "logoImage": "triumphlogo.jpg"
+        "brandName": "Triumph Pampanga",
+        "logoImage": "triumphlogo.jpg",
+        "href": "/triumph-pampanga"
     }
 ]

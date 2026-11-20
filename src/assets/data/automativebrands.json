@@ -1,78 +1,97 @@
 [
     {
         "brandName": "Baic",
-        "logoImage": "baiclogo.jpg"
+        "logoImage": "baiclogo.jpg",
+        "href": "/baic"
     },
     {
         "brandName": "BMW",
-        "logoImage": "bmwlogo.jpg"
+        "logoImage": "bmwlogo.jpg",
+        "href": "/bmw"
     },
     {
         "brandName": "Changhe Automobile",
-        "logoImage": "changhelogo.jpg"
+        "logoImage": "changhelogo.jpg",
+        "href": "/changhe-automobile"
     },
     {
         "brandName": "Chery",
-        "logoImage": "cherylogo.jpg"
+        "logoImage": "cherylogo.jpg",
+        "href": "/chery"
     },
     {
         "brandName": "Chevrolet",
-        "logoImage": "chevroletlogo.jpg"
+        "logoImage": "chevroletlogo.jpg",
+        "href": "/chevrolet"
     },
     {
         "brandName": "Ford",
-        "logoImage": "fordlogo.jpg"
+        "logoImage": "fordlogo.jpg",
+        "href": "/ford"
     },
     {
         "brandName": "Geely",
-        "logoImage": "geelylogo.jpg"
+        "logoImage": "geelylogo.jpg",
+        "href": "/geely"
     },
     {
         "brandName": "Haima",
-        "logoImage": "haimalogo.jpg"
+        "logoImage": "haimalogo.jpg",
+        "href": "/haima"
     },
     {
         "brandName": "Hyundai",
-        "logoImage": "hyundailogo.jpg"
+        "logoImage": "hyundailogo.jpg",
+        "href": "/hyundai"
     },
     {
         "brandName": "Jeep",
-        "logoImage": "jeeplogo.jpg"
+        "logoImage": "jeeplogo.jpg",
+        "href": "/jeep"
     },
     {
         "brandName": "Jetour",
-        "logoImage": "jetourlogo.jpg"
+        "logoImage": "jetourlogo.jpg",
+        "href": "/jetour"
     },
     {
         "brandName": "KIA",
-        "logoImage": "kialogo.jpg"
+        "logoImage": "kialogo.jpg",
+        "href": "/kia"
     },
     {
         "brandName": "Lynk & Co",
-        "logoImage": "lynklogo.jpg"
+        "logoImage": "lynklogo.jpg",
+        "href": "/lynk-and-co"
     },
     {
         "brandName": "Mazda",
-        "logoImage": "mazdalogo.jpg"
+        "logoImage": "mazdalogo.jpg",
+        "href": "/mazda"
     },
     {
         "brandName": "MINI",
-        "logoImage": "minilogo.jpg"
+        "logoImage": "minilogo.jpg",
+        "href": "/mini"
     },
     {
         "brandName": "Mitsubishi Motors",
-        "logoImage": "mitsubishilogo.jpg"
+        "logoImage": "mitsubishilogo.jpg",
+        "href": "/mitsubishi-motors"
     },
     {
         "brandName": "Omoda Jaecoo",
-        "logoImage": "omodalogo.png"
+        "logoImage": "omodalogo.png",
+        "href": "/omoda-jaecoo"
     },
     {
         "brandName": "Peugeot",
-        "logoImage": "peugeotlogo.jpg"
+        "logoImage": "peugeotlogo.jpg",
+        "href": "/peugeot"
     },
     {
         "brandName": "Suzuki",
-        "logoImage": "suzukilogo.jpg"
+        "logoImage": "suzukilogo.jpg",
+        "href": "/suzuki"
     }
 ]

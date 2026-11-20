@@ -10,270 +10,171 @@ import {
     foodGroup,
     mediaGroup,
 } from "../assets/data";
-import type { Brand } from "../assets/data";
 
-const address =
-    "Jose Abad Santos Avenue, City of San Fernando, Pampanga, Philippines 2000";
-const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+// One link in a menu
+type Link = { label: string; href: string };
 
-/* ---------------------------------- Menu data --------------------------------- */
+// A titled list of links (used by Affiliates)
+type Group = { heading: string; links: Link[] };
 
-interface NavLink {
-    label: string;
-    href: string;
-}
-
-interface MenuGroup {
-    heading?: string;
-    /** Desktop column (1-based) this group is placed in. Ignored for flat menus. */
-    column?: number;
-    links: NavLink[];
-}
-
-interface Menu {
-    description: string;
-    /** Number of columns in the desktop panel */
-    cols: number;
-    /** Flat = one plain list of links, laid out row by row in `cols` columns */
-    flat?: boolean;
-    groups: MenuGroup[];
-}
-
-interface NavItem {
+// One item in the main menu.
+// An item with "links" or "groups" opens a dropdown.
+type NavItem = {
     label: string;
     href: string;
     external?: boolean;
-    menu?: Menu;
-}
-
-// "Hyundai T&B" -> "hyundai-t-and-b", "Hüper Optik" -> "huper-optik"
-const slug = (s: string) =>
-    s
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/['’]/g, "")
-        .replace(/\s*&\s*/g, "-and-")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-
-const toLinks = (base: string, labels: string[]): NavLink[] =>
-    labels.map((label) => ({ label, href: `${base}/${slug(label)}` }));
-
-// Menu links come straight from the data files: add a brand to a JSON and it shows up here.
-// Child links default to /parent/name-of-brand, so update the base paths to match your routes.
-const brandLinks = (base: string, brands: Brand[]): NavLink[] =>
-    brands.map((b) => ({
-        label: b.brandName,
-        href: `${base}/${slug(b.brandName)}`,
-    }));
-
-const byName = (a: Brand, b: Brand) => a.brandName.localeCompare(b.brandName);
-
-/**
- * Groups brands by their `category`, then spreads the groups over `cols` columns,
- * always placing the next-largest group in the shortest column.
- */
-const buildGroups = (
-    brands: Brand[],
-    base: string,
-    cols: number,
-): MenuGroup[] => {
-    const byCategory = new Map<string, Brand[]>();
-    brands.forEach((b) => {
-        const key = b.category ?? "More";
-        byCategory.set(key, [...(byCategory.get(key) ?? []), b]);
-    });
-
-    const groups = [...byCategory.entries()]
-        .map(([heading, items]) => ({
-            heading,
-            links: brandLinks(base, [...items].sort(byName)),
-        }))
-        .sort((a, b) => b.links.length - a.links.length);
-
-    const heights = Array<number>(cols).fill(0);
-    return groups.map((group) => {
-        const column = heights.indexOf(Math.min(...heights));
-        heights[column] += group.links.length + 2; // +2 accounts for the heading
-        return { ...group, column: column + 1 };
-    });
+    description?: string; // text on the left of the dropdown
+    columns?: string; // "columns-4" for plain links (top to bottom), "grid-cols-3" for groups
+    links?: Link[];
+    groups?: Group[];
 };
 
-const affiliateBrands = [...affiliates, ...foodGroup, ...mediaGroup];
+export default function Header() {
+    // The address shown at the top, and its Google Maps link
+    const ADDRESS =
+        "Jose Abad Santos Avenue, City of San Fernando, Pampanga, Philippines 2000";
+    const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 
-const navItems: NavItem[] = [
-    { label: "Home", href: "/" },
-    {
-        label: "About us",
-        href: "/about-us",
-        menu: {
-            // TODO: placeholder items, replace with the real About us pages
+    // The main menu. Every link is written here with its own href.
+    // Brand links come from the data files: each brand needs a "brandName" and an "href".
+    const NAV_ITEMS: NavItem[] = [
+        { label: "Home", href: "/" },
+        {
+            label: "About us",
+            href: "/about-us/company-profile",
             description: "Learn who we are and what drives the group.",
-            cols: 1,
-            flat: true,
-            groups: [
+            columns: "columns-1",
+            links: [
+                { label: "Company Profile", href: "/about-us/company-profile" },
                 {
-                    links: toLinks("/about-us", [
-                        "Company Profile",
-                        "mission-vision",
-                        "About the Founder",
-                    ]),
+                    label: "Mission and Vision",
+                    href: "/about-us/mission-vision",
+                },
+                {
+                    label: "About the Founder",
+                    href: "/about-us/about-the-founder",
                 },
             ],
         },
-    },
-    {
-        label: "Automotive",
-        href: "/automotive",
-        menu: {
+        {
+            label: "Automotive",
+            href: "/automotive",
             description:
                 "Cars, trucks and buses from every brand we carry across our dealerships.",
-            cols: 4,
-            flat: true,
+            columns: "columns-4",
+            links: [
+                ...automotiveBrands,
+                ...trucksBuses,
+                ...affiliates.filter((brand) => brand.showInAutomotive),
+            ]
+                .sort((a, b) => a.brandName.localeCompare(b.brandName))
+                .map((brand) => ({
+                    label: brand.brandName,
+                    href: brand.href,
+                })),
+        },
+        {
+            label: "Motorbikes",
+            href: "/motorbikes",
+            description:
+                "Premium and everyday motorbikes from our dealerships.",
+            columns: "columns-4",
+            links: [...motorbikes]
+                .sort((a, b) => a.brandName.localeCompare(b.brandName))
+                .map((brand) => ({
+                    label: brand.brandName,
+                    href: brand.href,
+                })),
+        },
+        {
+            label: "Affiliates",
+            href: "/affiliates",
+            description:
+                "Finance, auto care, dining, media and more from the LausGroup family.",
+            columns: "grid-cols-3",
             groups: [
                 {
-                    links: brandLinks(
-                        "/automotive",
-                        [...automotiveBrands, ...trucksBuses].sort(byName),
-                    ),
+                    heading: "Affiliates",
+                    links: affiliates
+                        .filter((brand) => !brand.showInAutomotive)
+                        .map((brand) => ({
+                            label: brand.brandName,
+                            href: brand.href,
+                        })),
+                },
+                {
+                    heading: "Food Group",
+                    links: foodGroup.map((brand) => ({
+                        label: brand.brandName,
+                        href: brand.href,
+                    })),
+                },
+                {
+                    heading: "Media Group",
+                    links: mediaGroup.map((brand) => ({
+                        label: brand.brandName,
+                        href: brand.href,
+                    })),
                 },
             ],
         },
-    },
-    {
-        label: "Motorbikes",
-        href: "/motorbikes",
-        menu: {
-            description:
-                "Premium and everyday motorbikes from our dealerships.",
-            cols: 4,
-            flat: true,
-            groups: [{ links: brandLinks("/motorbikes", motorbikes) }],
+        { label: "News and events", href: "/news-and-events" },
+        { label: "Contact us", href: "/contact-us" },
+        {
+            label: "Careers",
+            href: "https://careers.lausgroup.com.ph/",
+            external: true,
         },
-    },
-    {
-        label: "Affiliates",
-        href: "/affiliates",
-        menu: {
-            description:
-                "Finance, auto care, dining, media and more from the LausGroup family.",
-            cols: 4,
-            groups: buildGroups(affiliateBrands, "/affiliates", 4),
+    ];
+
+    // Social pages (TODO: replace with the real LausGroup pages)
+    const SOCIALS = [
+        {
+            label: "LausGroup on YouTube",
+            href: "https://www.youtube.com/",
+            icon: "M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17 M10 15l5-3-5-3z",
         },
-    },
-    { label: "News and events", href: "/news-and-events" },
-    { label: "Contact us", href: "/contact" },
-    {
-        label: "Careers",
-        href: "https://careers.lausgroup.com.ph/",
-        external: true,
-    },
-];
+        {
+            label: "LausGroup on Instagram",
+            href: "https://www.instagram.com/",
+            icon: "M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5z M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z M17.5 6.5h.01",
+        },
+        {
+            label: "LausGroup on Facebook",
+            href: "https://www.facebook.com/",
+            icon: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z",
+        },
+    ];
 
-/* ---------------------------------- Socials ---------------------------------- */
-
-// TODO: replace with the real LausGroup social pages
-const svgProps = {
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.75,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    className: "h-4 w-4",
-    "aria-hidden": true,
-} as const;
-
-const socials = [
-    {
-        label: "LausGroup on YouTube",
-        href: "https://www.youtube.com/",
-        icon: (
-            <svg {...svgProps}>
-                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-                <path d="m10 15 5-3-5-3z" />
-            </svg>
-        ),
-    },
-    {
-        label: "LausGroup on Instagram",
-        href: "https://www.instagram.com/",
-        icon: (
-            <svg {...svgProps}>
-                <rect x="3" y="3" width="18" height="18" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.75" />
-            </svg>
-        ),
-    },
-    {
-        label: "LausGroup on Facebook",
-        href: "https://www.facebook.com/",
-        icon: (
-            <svg {...svgProps}>
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-            </svg>
-        ),
-    },
-];
-
-/* ---------------------------------- Styles ---------------------------------- */
-
-const focusRing =
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500";
-const iconButton = `grid h-10 w-10 place-items-center rounded-full text-neutral-200 transition-colors hover:bg-white/10 hover:text-white cursor-pointer ${focusRing}`;
-const socialButton = `grid h-8 w-8 place-items-center rounded-full bg-white/10 text-neutral-200 transition-colors hover:bg-red-600 hover:text-white ${focusRing}`;
-const ctaButton = `inline-flex items-center justify-center gap-2 rounded-sm bg-red-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-red-700 cursor-pointer ${focusRing}`;
-const panelLink = `block py-1.5 text-[15px] font-medium text-neutral-700 transition-colors hover:text-red-600 hover:underline hover:underline-offset-4 ${focusRing}`;
-
-const externalProps = (external?: boolean) =>
-    external ? { target: "_blank", rel: "noopener noreferrer" } : {};
-
-/* ---------------------------------- Component ---------------------------------- */
-
-export default function Header() {
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-    const [openMenu, setOpenMenu] = useState<string | null>(null); // desktop dropdown
-    const [mobileOpen, setMobileOpen] = useState<string | null>(null); // mobile accordion
+    const [openDropdown, setOpenDropdown] = useState(""); // desktop dropdown that is open
+    const [openMobileItem, setOpenMobileItem] = useState(""); // mobile item that is expanded
+    const [scrolled, setScrolled] = useState(() => window.scrollY > 8); // page scrolled down?
     const searchInput = useRef<HTMLInputElement>(null);
-    const closeTimer = useRef<number | undefined>(undefined);
 
-    const path = typeof window !== "undefined" ? window.location.pathname : "/";
+    // The page we are on, to highlight its menu item
+    const path = window.location.pathname;
     const isActive = (item: NavItem) =>
-        item.external
-            ? false
-            : item.href === "/"
-              ? path === "/"
-              : path.startsWith(item.href);
+        !item.external &&
+        (item.href === "/" ? path === "/" : path.startsWith(item.href));
+
+    const hasDropdown = (item: NavItem) => !!(item.links || item.groups);
 
     const closeAll = () => {
-        setMenuOpen(false);
+        setMobileMenuOpen(false);
         setSearchOpen(false);
-        setOpenMenu(null);
+        setOpenDropdown("");
     };
 
-    // Hover-intent: open immediately, close after a short delay so the pointer can travel
-    const openNow = (label: string | null) => {
-        window.clearTimeout(closeTimer.current);
-        setOpenMenu(label);
-    };
-    const scheduleClose = () => {
-        window.clearTimeout(closeTimer.current);
-        closeTimer.current = window.setTimeout(() => setOpenMenu(null), 150);
-    };
-
-    // Shadow once the page has scrolled
+    // Add a shadow under the header once the page has scrolled
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 8);
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("scroll", onScroll);
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    // Escape closes panels
+    // The Escape key closes everything
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => {
             if (e.key === "Escape") closeAll();
@@ -282,222 +183,249 @@ export default function Header() {
         return () => window.removeEventListener("keydown", onKey);
     }, []);
 
-    // Close the mobile menu if the screen grows into the desktop layout
+    // Stop the page from scrolling while the mobile menu is open
     useEffect(() => {
-        const mq = window.matchMedia("(min-width: 1280px)");
-        const onChange = (e: MediaQueryListEvent) => {
-            if (e.matches) setMenuOpen(false);
-        };
-        mq.addEventListener("change", onChange);
-        return () => mq.removeEventListener("change", onChange);
-    }, []);
-
-    // Lock page scroll while the mobile menu is open
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
+        document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
         return () => {
             document.body.style.overflow = "";
         };
-    }, [menuOpen]);
+    }, [mobileMenuOpen]);
 
-    // Focus the search field when it opens
+    // Put the cursor in the search field when it opens
     useEffect(() => {
         if (searchOpen) searchInput.current?.focus();
     }, [searchOpen]);
 
-    // Clear any pending timer on unmount
-    useEffect(() => () => window.clearTimeout(closeTimer.current), []);
-
     return (
-        <>
-            {/* Utility bar: address + socials (hidden on small phones) */}
-            <div className="hidden bg-neutral-950 font-['Barlow'] text-xs text-neutral-400 sm:block">
-                <div className="container mx-auto flex h-9 items-center justify-between gap-4 px-4">
-                    <a
-                        href={mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`flex min-w-0 items-center gap-2 transition-colors hover:text-white ${focusRing}`}
-                    >
-                        <MapPin
-                            className="h-3.5 w-3.5 shrink-0 text-red-500"
-                            aria-hidden="true"
-                        />
-                        <span className="truncate">{address}</span>
-                    </a>
+        // The whole header sticks to the top.
+        // On desktop it moves up by the height of the dark area (2.5rem + 6rem = 8.5rem),
+        // so only the gray menu bar stays on screen while scrolling.
+        <header
+            className={`sticky top-0 z-50 font-['Barlow'] transition-shadow duration-300 xl:-top-[8.5rem] ${
+                scrolled ? "shadow-lg shadow-black/20" : ""
+            }`}
+        >
+            {/* ===== Dark area ===== */}
+            <div className="bg-neutral-900 text-white">
+                <div className="container mx-auto px-4">
+                    {/* Address row (desktop only) */}
+                    <div className="hidden h-10 items-center justify-end border-b border-white/10 xl:flex">
+                        <a
+                            href={MAPS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-xs uppercase tracking-wide text-neutral-400 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                        >
+                            <MapPin
+                                className="h-3.5 w-3.5 text-red-500"
+                                aria-hidden="true"
+                            />
+                            {ADDRESS}
+                        </a>
+                    </div>
 
-                    <ul className="ml-auto hidden items-center gap-2 md:flex">
-                        {socials.map((s) => (
-                            <li key={s.label}>
-                                <a
-                                    href={s.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={s.label}
-                                    className={socialButton}
-                                >
-                                    {s.icon}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    {/* Logo row: logo on the left, socials (desktop) or buttons (mobile) on the right */}
+                    <div className="flex h-16 items-center justify-between gap-4 xl:h-24">
+                        <a
+                            href="/"
+                            aria-label="LausGroup home"
+                            onClick={closeAll}
+                            className="shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+                        >
+                            <img
+                                src={logo}
+                                alt="LausGroup - A Passion for Cars & Customer Care"
+                                className="h-9 w-auto sm:h-11 xl:h-14"
+                            />
+                        </a>
+
+                        {/* Socials (desktop only) */}
+                        <ul className="hidden items-center gap-3 xl:flex">
+                            {SOCIALS.map((social) => (
+                                <li key={social.label}>
+                                    <a
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={social.label}
+                                        className="grid h-10 w-10 place-items-center rounded-full bg-neutral-800 text-neutral-200 ring-1 ring-white/10 transition-colors hover:bg-red-600 hover:text-white hover:ring-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                                    >
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={1.75}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            aria-hidden="true"
+                                            className="h-4 w-4"
+                                        >
+                                            <path d={social.icon} />
+                                        </svg>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+
+                        {/* Search and menu buttons (mobile and tablet only) */}
+                        <div className="flex items-center gap-1 xl:hidden">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setSearchOpen(!searchOpen);
+                                    setMobileMenuOpen(false);
+                                }}
+                                aria-label={
+                                    searchOpen ? "Close search" : "Open search"
+                                }
+                                aria-expanded={searchOpen}
+                                className="grid h-10 w-10 cursor-pointer place-items-center rounded-full text-neutral-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                            >
+                                {searchOpen ? (
+                                    <X className="h-5 w-5" />
+                                ) : (
+                                    <Search className="h-5 w-5" />
+                                )}
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setMobileMenuOpen(!mobileMenuOpen);
+                                    setSearchOpen(false);
+                                }}
+                                aria-label={
+                                    mobileMenuOpen ? "Close menu" : "Open menu"
+                                }
+                                aria-expanded={mobileMenuOpen}
+                                className="grid h-10 w-10 cursor-pointer place-items-center rounded-full text-neutral-200 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
+                            >
+                                {mobileMenuOpen ? (
+                                    <X className="h-6 w-6" />
+                                ) : (
+                                    <Menu className="h-6 w-6" />
+                                )}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Main bar */}
-            <header
-                className={`sticky top-0 z-50 bg-neutral-900 font-['Barlow'] text-white transition-shadow duration-300 ${
-                    scrolled ? "shadow-lg shadow-black/25" : ""
-                }`}
-            >
-                <div className="container mx-auto flex h-16 items-center gap-6 px-4 xl:h-20">
-                    <a
-                        href="/"
-                        aria-label="LausGroup home"
-                        onClick={closeAll}
-                        className={`shrink-0 ${focusRing}`}
-                    >
-                        <img
-                            src={logo}
-                            alt="LausGroup - A Passion for Cars & Customer Care"
-                            className="h-9 w-auto sm:h-11 xl:h-12"
-                        />
-                    </a>
-
-                    {/* Desktop navigation */}
-                    <nav
-                        aria-label="Main"
-                        className="ml-auto hidden h-full xl:block"
-                        onMouseLeave={scheduleClose}
-                    >
-                        <ul className="flex h-full items-stretch">
-                            {navItems.map((item) => {
+            {/* ===== Gray menu bar (desktop only) ===== */}
+            <div className="hidden bg-neutral-100 xl:block">
+                <div className="container mx-auto flex h-12 items-stretch justify-between px-4">
+                    <nav aria-label="Main">
+                        <ul className="flex h-full">
+                            {NAV_ITEMS.map((item) => {
                                 const active = isActive(item);
-                                const menu = item.menu;
-                                const isOpen = openMenu === item.label;
-                                const panelId = `mega-${slug(item.label)}`;
-
-                                // Place groups into their desktop columns
-                                const columns = menu
-                                    ? Array.from(
-                                          { length: menu.cols },
-                                          (_, c) =>
-                                              menu.groups.filter(
-                                                  (g) =>
-                                                      (g.column ?? 1) === c + 1,
-                                              ),
-                                      )
-                                    : [];
+                                const open = openDropdown === item.label;
 
                                 return (
                                     <li
                                         key={item.label}
                                         className="flex"
                                         onMouseEnter={() =>
-                                            openNow(menu ? item.label : null)
-                                        }
-                                        onFocus={() =>
-                                            openNow(menu ? item.label : null)
-                                        }
-                                        onBlur={(e) => {
-                                            if (
-                                                !e.currentTarget.contains(
-                                                    e.relatedTarget as Node | null,
-                                                )
+                                            setOpenDropdown(
+                                                hasDropdown(item)
+                                                    ? item.label
+                                                    : "",
                                             )
-                                                setOpenMenu(null);
-                                        }}
+                                        }
+                                        onMouseLeave={() => setOpenDropdown("")}
                                     >
+                                        {/* Current page: solid red block. Open dropdown or hover: white tab with red text. */}
                                         <a
                                             href={item.href}
-                                            {...externalProps(item.external)}
+                                            target={
+                                                item.external
+                                                    ? "_blank"
+                                                    : undefined
+                                            }
+                                            rel={
+                                                item.external
+                                                    ? "noopener noreferrer"
+                                                    : undefined
+                                            }
                                             aria-current={
                                                 active ? "page" : undefined
                                             }
-                                            aria-haspopup={
-                                                menu ? "true" : undefined
-                                            }
                                             aria-expanded={
-                                                menu ? isOpen : undefined
+                                                hasDropdown(item)
+                                                    ? open
+                                                    : undefined
                                             }
-                                            aria-controls={
-                                                menu ? panelId : undefined
+                                            onFocus={() =>
+                                                setOpenDropdown(
+                                                    hasDropdown(item)
+                                                        ? item.label
+                                                        : "",
+                                                )
                                             }
-                                            className={`group relative flex items-center px-4 text-[13px] font-semibold uppercase tracking-wider transition-colors ${focusRing} ${
-                                                active || isOpen
-                                                    ? "text-white"
-                                                    : "text-neutral-300 hover:text-white"
+                                            className={`flex items-center gap-1 px-5 text-[13px] font-bold uppercase tracking-wide transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-red-600 ${
+                                                active
+                                                    ? "bg-red-600 text-white"
+                                                    : open
+                                                      ? "bg-white text-red-600"
+                                                      : "text-neutral-900 hover:bg-white hover:text-red-600"
                                             }`}
                                         >
                                             {item.label}
-                                            {menu && (
+                                            {hasDropdown(item) && (
                                                 <ChevronDown
                                                     aria-hidden="true"
-                                                    className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${
-                                                        isOpen
-                                                            ? "rotate-180"
-                                                            : ""
+                                                    className={`h-3.5 w-3.5 transition-transform duration-200 ${
+                                                        open ? "rotate-180" : ""
                                                     }`}
                                                 />
                                             )}
-                                            <span
-                                                aria-hidden="true"
-                                                className={`absolute inset-x-4 bottom-0 h-1 origin-left bg-red-600 transition-transform duration-200 ${
-                                                    active || isOpen
-                                                        ? "scale-x-100"
-                                                        : "scale-x-0 group-hover:scale-x-100"
-                                                }`}
-                                            />
                                         </a>
 
-                                        {/* Dropdown panel (full width, anchored to the header) */}
-                                        {menu && (
+                                        {/* Dropdown, full width under the menu bar */}
+                                        {hasDropdown(item) && (
                                             <div
-                                                id={panelId}
-                                                className={`absolute inset-x-0 top-full max-h-[calc(100dvh-7rem)] overflow-y-auto border-t-4 border-red-600 bg-white text-neutral-900 shadow-2xl shadow-black/25 transition-[opacity,visibility,transform] duration-200 motion-reduce:transition-none ${
-                                                    isOpen
+                                                className={`absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t-4 border-red-600 bg-white text-neutral-900 shadow-2xl shadow-black/20 transition-[opacity,visibility,transform] duration-200 motion-reduce:transition-none ${
+                                                    open
                                                         ? "visible translate-y-0 opacity-100"
                                                         : "pointer-events-none invisible -translate-y-1 opacity-0"
                                                 }`}
                                             >
-                                                <div className="container mx-auto grid gap-12 px-4 py-10 lg:grid-cols-[15rem_1fr]">
+                                                <div className="container mx-auto grid grid-cols-[15rem_1fr] gap-12 px-4 py-10">
+                                                    {/* Left: title and description */}
                                                     <div>
-                                                        <p className="font-['Barlow_Condensed'] text-3xl font-bold leading-none">
+                                                        <p className="font-['Barlow_Condensed'] text-3xl font-bold uppercase leading-none">
                                                             {item.label}
                                                         </p>
                                                         <p className="mt-3 text-sm leading-relaxed text-neutral-600">
-                                                            {menu.description}
+                                                            {item.description}
                                                         </p>
                                                         <a
                                                             href={item.href}
-                                                            className={`mt-5 inline-block text-sm font-semibold text-red-600 underline underline-offset-4 hover:text-red-700 ${focusRing}`}
+                                                            className="mt-5 inline-block text-sm font-semibold text-red-600 underline underline-offset-4 hover:text-red-700"
                                                         >
                                                             Go to {item.label}
                                                         </a>
                                                     </div>
 
-                                                    <div className="lg:border-l lg:border-neutral-200 lg:pl-12">
-                                                        {menu.flat ? (
+                                                    {/* Right: the links */}
+                                                    <div className="border-l border-neutral-200 pl-12">
+                                                        {/* A plain list of links */}
+                                                        {item.links && (
                                                             <ul
-                                                                className="grid gap-x-8"
-                                                                style={{
-                                                                    gridTemplateColumns: `repeat(${menu.cols}, minmax(0, 1fr))`,
-                                                                }}
+                                                                className={`gap-x-8 ${item.columns}`}
                                                             >
-                                                                {menu.groups[0].links.map(
+                                                                {item.links.map(
                                                                     (link) => (
                                                                         <li
                                                                             key={
                                                                                 link.href
                                                                             }
+                                                                            className="break-inside-avoid"
                                                                         >
                                                                             <a
                                                                                 href={
                                                                                     link.href
                                                                                 }
-                                                                                className={
-                                                                                    panelLink
-                                                                                }
+                                                                                className="block py-1.5 text-[15px] font-semibold text-neutral-700 transition-colors hover:text-red-600"
                                                                             >
                                                                                 {
                                                                                     link.label
@@ -507,67 +435,49 @@ export default function Header() {
                                                                     ),
                                                                 )}
                                                             </ul>
-                                                        ) : (
+                                                        )}
+
+                                                        {/* Lists of links with a heading, one per column */}
+                                                        {item.groups && (
                                                             <div
-                                                                className="grid gap-x-8"
-                                                                style={{
-                                                                    gridTemplateColumns: `repeat(${menu.cols}, minmax(0, 1fr))`,
-                                                                }}
+                                                                className={`grid gap-x-8 ${item.columns}`}
                                                             >
-                                                                {columns.map(
-                                                                    (
-                                                                        groups,
-                                                                        c,
-                                                                    ) => (
+                                                                {item.groups.map(
+                                                                    (group) => (
                                                                         <div
                                                                             key={
-                                                                                c
+                                                                                group.heading
                                                                             }
-                                                                            className="space-y-7"
                                                                         >
-                                                                            {groups.map(
-                                                                                (
-                                                                                    group,
-                                                                                ) => (
-                                                                                    <div
-                                                                                        key={
-                                                                                            group.heading
-                                                                                        }
-                                                                                    >
-                                                                                        <p className="mb-2 border-b border-neutral-200 pb-2 font-['Barlow_Condensed'] text-xl font-bold">
-                                                                                            {
-                                                                                                group.heading
+                                                                            <p className="mb-2 border-b border-neutral-200 pb-2 font-['Barlow_Condensed'] text-xl font-bold uppercase">
+                                                                                {
+                                                                                    group.heading
+                                                                                }
+                                                                            </p>
+                                                                            <ul>
+                                                                                {group.links.map(
+                                                                                    (
+                                                                                        link,
+                                                                                    ) => (
+                                                                                        <li
+                                                                                            key={
+                                                                                                link.href
                                                                                             }
-                                                                                        </p>
-                                                                                        <ul>
-                                                                                            {group.links.map(
-                                                                                                (
-                                                                                                    link,
-                                                                                                ) => (
-                                                                                                    <li
-                                                                                                        key={
-                                                                                                            link.href
-                                                                                                        }
-                                                                                                    >
-                                                                                                        <a
-                                                                                                            href={
-                                                                                                                link.href
-                                                                                                            }
-                                                                                                            className={
-                                                                                                                panelLink
-                                                                                                            }
-                                                                                                        >
-                                                                                                            {
-                                                                                                                link.label
-                                                                                                            }
-                                                                                                        </a>
-                                                                                                    </li>
-                                                                                                ),
-                                                                                            )}
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                ),
-                                                                            )}
+                                                                                        >
+                                                                                            <a
+                                                                                                href={
+                                                                                                    link.href
+                                                                                                }
+                                                                                                className="block py-1.5 text-[15px] text-neutral-700 transition-colors hover:text-red-600"
+                                                                                            >
+                                                                                                {
+                                                                                                    link.label
+                                                                                                }
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    ),
+                                                                                )}
+                                                                            </ul>
                                                                         </div>
                                                                     ),
                                                                 )}
@@ -583,191 +493,156 @@ export default function Header() {
                         </ul>
                     </nav>
 
-                    {/* Actions */}
-                    <div className="ml-auto flex items-center gap-1 xl:ml-0 xl:gap-3">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setSearchOpen((o) => !o);
-                                setMenuOpen(false);
-                                setOpenMenu(null);
-                            }}
-                            aria-label={
-                                searchOpen ? "Close search" : "Open search"
-                            }
-                            aria-expanded={searchOpen}
-                            aria-controls="site-search-panel"
-                            className={iconButton}
-                        >
-                            {searchOpen ? (
-                                <X className="h-5 w-5" />
-                            ) : (
-                                <Search className="h-5 w-5" />
-                            )}
-                        </button>
-
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setMenuOpen((o) => !o);
-                                setSearchOpen(false);
-                            }}
-                            aria-label={menuOpen ? "Close menu" : "Open menu"}
-                            aria-expanded={menuOpen}
-                            aria-controls="mobile-menu"
-                            className={`${iconButton} xl:hidden`}
-                        >
-                            {menuOpen ? (
-                                <X className="h-6 w-6" />
-                            ) : (
-                                <Menu className="h-6 w-6" />
-                            )}
-                        </button>
-                    </div>
+                    {/* Round search button */}
+                    <button
+                        type="button"
+                        onClick={() => setSearchOpen(!searchOpen)}
+                        aria-label={searchOpen ? "Close search" : "Open search"}
+                        aria-expanded={searchOpen}
+                        className="grid h-9 w-9 cursor-pointer place-items-center self-center rounded-full bg-white text-neutral-900 ring-1 ring-neutral-300 transition-colors hover:bg-red-600 hover:text-white hover:ring-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                    >
+                        {searchOpen ? (
+                            <X className="h-4 w-4" />
+                        ) : (
+                            <Search className="h-4 w-4" />
+                        )}
+                    </button>
                 </div>
+            </div>
 
-                {/* Search panel */}
-                {searchOpen && (
-                    <div
-                        id="site-search-panel"
-                        className="absolute inset-x-0 top-full border-t border-white/10 bg-neutral-800 shadow-lg shadow-black/25"
+            {/* ===== Search bar ===== */}
+            {searchOpen && (
+                <div className="absolute inset-x-0 top-full border-t border-neutral-200 bg-white shadow-lg shadow-black/15">
+                    <form
+                        role="search"
+                        action="/search"
+                        method="get"
+                        className="container mx-auto flex items-center gap-3 px-4 py-4"
                     >
-                        <form
-                            role="search"
-                            action="/search"
-                            method="get"
-                            className="container mx-auto flex items-center gap-3 px-4 py-4"
+                        <Search
+                            className="h-5 w-5 shrink-0 text-neutral-400"
+                            aria-hidden="true"
+                        />
+                        <input
+                            ref={searchInput}
+                            type="search"
+                            name="q"
+                            aria-label="Search LausGroup"
+                            placeholder="Search brands, news and careers"
+                            className="min-w-0 flex-1 bg-transparent text-lg text-neutral-900 placeholder:text-neutral-400 focus:outline-none"
+                        />
+                        <button
+                            type="submit"
+                            className="inline-flex cursor-pointer items-center justify-center rounded-sm bg-red-600 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                         >
-                            <label htmlFor="site-search" className="sr-only">
-                                Search LausGroup
-                            </label>
-                            <Search
-                                className="h-5 w-5 shrink-0 text-neutral-400"
-                                aria-hidden="true"
-                            />
-                            <input
-                                ref={searchInput}
-                                id="site-search"
-                                type="search"
-                                name="q"
-                                placeholder="Search brands, news and careers"
-                                className="min-w-0 flex-1 bg-transparent text-lg text-white placeholder:text-neutral-500 focus:outline-none"
-                            />
-                            <button type="submit" className={ctaButton}>
-                                Search
-                            </button>
-                        </form>
-                    </div>
-                )}
+                            Search
+                        </button>
+                    </form>
+                </div>
+            )}
 
-                {/* Mobile / tablet menu */}
-                {menuOpen && (
-                    <div
-                        id="mobile-menu"
-                        className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/10 bg-neutral-900 shadow-lg shadow-black/30 xl:hidden"
-                    >
-                        <nav
-                            aria-label="Mobile"
-                            className="container mx-auto px-4"
-                        >
-                            <ul>
-                                {navItems.map((item) => {
-                                    const active = isActive(item);
-                                    const menu = item.menu;
-                                    const expanded = mobileOpen === item.label;
-                                    const subId = `mobile-sub-${slug(item.label)}`;
+            {/* ===== Mobile and tablet menu ===== */}
+            {mobileMenuOpen && (
+                <div className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto border-t-4 border-red-600 bg-neutral-100 shadow-lg shadow-black/25 xl:hidden">
+                    <nav aria-label="Mobile" className="container mx-auto px-4">
+                        <ul>
+                            {NAV_ITEMS.map((item) => {
+                                const active = isActive(item);
+                                const expanded = openMobileItem === item.label;
 
-                                    const rowClass = `flex w-full items-center gap-3 py-4 text-left text-lg font-semibold ${focusRing} ${
-                                        active || expanded
-                                            ? "text-white"
-                                            : "text-neutral-300"
-                                    }`;
-                                    const marker = (
-                                        <span
-                                            aria-hidden="true"
-                                            className={`h-5 w-1 ${
-                                                active
-                                                    ? "bg-red-600"
-                                                    : "bg-transparent"
-                                            }`}
-                                        />
-                                    );
+                                return (
+                                    <li
+                                        key={item.label}
+                                        className="border-b border-neutral-200"
+                                    >
+                                        {hasDropdown(item) ? (
+                                            <>
+                                                {/* Opens and closes the links */}
+                                                <button
+                                                    type="button"
+                                                    aria-expanded={expanded}
+                                                    onClick={() =>
+                                                        setOpenMobileItem(
+                                                            expanded
+                                                                ? ""
+                                                                : item.label,
+                                                        )
+                                                    }
+                                                    className={`flex w-full cursor-pointer items-center justify-between px-3 py-4 text-left text-sm font-bold uppercase tracking-wide ${
+                                                        active
+                                                            ? "bg-red-600 text-white"
+                                                            : expanded
+                                                              ? "text-red-600"
+                                                              : "text-neutral-900"
+                                                    }`}
+                                                >
+                                                    {item.label}
+                                                    <ChevronDown
+                                                        aria-hidden="true"
+                                                        className={`h-5 w-5 transition-transform duration-200 ${
+                                                            expanded
+                                                                ? "rotate-180"
+                                                                : ""
+                                                        }`}
+                                                    />
+                                                </button>
 
-                                    return (
-                                        <li
-                                            key={item.label}
-                                            className="border-b border-white/10"
-                                        >
-                                            {menu ? (
-                                                <>
-                                                    <button
-                                                        type="button"
-                                                        aria-expanded={expanded}
-                                                        aria-controls={subId}
-                                                        onClick={() =>
-                                                            setMobileOpen(
-                                                                expanded
-                                                                    ? null
-                                                                    : item.label,
-                                                            )
-                                                        }
-                                                        className={`${rowClass} justify-between`}
-                                                    >
-                                                        <span className="flex items-center gap-3">
-                                                            {marker}
-                                                            {item.label}
-                                                        </span>
-                                                        <ChevronDown
-                                                            aria-hidden="true"
-                                                            className={`h-5 w-5 transition-transform duration-200 ${
-                                                                expanded
-                                                                    ? "rotate-180"
-                                                                    : ""
-                                                            }`}
-                                                        />
-                                                    </button>
-
-                                                    {expanded && (
-                                                        <div
-                                                            id={subId}
-                                                            className="pb-5 pl-4"
+                                                {expanded && (
+                                                    <div className="bg-white px-3 pb-5 pt-4">
+                                                        <a
+                                                            href={item.href}
+                                                            onClick={closeAll}
+                                                            className="mb-3 inline-block text-sm font-semibold text-red-600 underline underline-offset-4"
                                                         >
-                                                            <a
-                                                                href={item.href}
-                                                                onClick={
-                                                                    closeAll
-                                                                }
-                                                                className={`mb-3 inline-block text-sm font-semibold text-red-500 underline underline-offset-4 ${focusRing}`}
-                                                            >
-                                                                Go to{" "}
-                                                                {item.label}
-                                                            </a>
+                                                            Go to {item.label}
+                                                        </a>
 
-                                                            {menu.groups.map(
-                                                                (group, gi) => (
+                                                        {/* A plain list of links */}
+                                                        {item.links && (
+                                                            <ul className="columns-2 gap-x-4 sm:columns-3">
+                                                                {item.links.map(
+                                                                    (link) => (
+                                                                        <li
+                                                                            key={
+                                                                                link.href
+                                                                            }
+                                                                            className="break-inside-avoid"
+                                                                        >
+                                                                            <a
+                                                                                href={
+                                                                                    link.href
+                                                                                }
+                                                                                onClick={
+                                                                                    closeAll
+                                                                                }
+                                                                                className="block py-2 text-base text-neutral-700 hover:text-red-600"
+                                                                            >
+                                                                                {
+                                                                                    link.label
+                                                                                }
+                                                                            </a>
+                                                                        </li>
+                                                                    ),
+                                                                )}
+                                                            </ul>
+                                                        )}
+
+                                                        {/* Lists of links with a heading */}
+                                                        {item.groups &&
+                                                            item.groups.map(
+                                                                (group) => (
                                                                     <div
                                                                         key={
-                                                                            group.heading ??
-                                                                            gi
+                                                                            group.heading
                                                                         }
                                                                         className="mb-4 last:mb-0"
                                                                     >
-                                                                        {group.heading && (
-                                                                            <p className="mb-1 font-['Barlow_Condensed'] text-lg font-bold text-white">
-                                                                                {
-                                                                                    group.heading
-                                                                                }
-                                                                            </p>
-                                                                        )}
-                                                                        <ul
-                                                                            className={
-                                                                                menu.flat &&
-                                                                                menu.cols >
-                                                                                    1
-                                                                                    ? "grid grid-cols-2 gap-x-4 sm:grid-cols-3"
-                                                                                    : ""
+                                                                        <p className="mb-1 font-['Barlow_Condensed'] text-lg font-bold uppercase text-neutral-900">
+                                                                            {
+                                                                                group.heading
                                                                             }
-                                                                        >
+                                                                        </p>
+                                                                        <ul>
                                                                             {group.links.map(
                                                                                 (
                                                                                     link,
@@ -784,7 +659,7 @@ export default function Header() {
                                                                                             onClick={
                                                                                                 closeAll
                                                                                             }
-                                                                                            className={`block py-2 text-base text-neutral-300 hover:text-white ${focusRing}`}
+                                                                                            className="block py-2 text-base text-neutral-700 hover:text-red-600"
                                                                                         >
                                                                                             {
                                                                                                 link.label
@@ -797,66 +672,87 @@ export default function Header() {
                                                                     </div>
                                                                 ),
                                                             )}
-                                                        </div>
-                                                    )}
-                                                </>
-                                            ) : (
-                                                <a
-                                                    href={item.href}
-                                                    {...externalProps(
-                                                        item.external,
-                                                    )}
-                                                    onClick={closeAll}
-                                                    aria-current={
-                                                        active
-                                                            ? "page"
-                                                            : undefined
-                                                    }
-                                                    className={rowClass}
-                                                >
-                                                    {marker}
-                                                    {item.label}
-                                                </a>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </nav>
+                                                    </div>
+                                                )}
+                                            </>
+                                        ) : (
+                                            <a
+                                                href={item.href}
+                                                target={
+                                                    item.external
+                                                        ? "_blank"
+                                                        : undefined
+                                                }
+                                                rel={
+                                                    item.external
+                                                        ? "noopener noreferrer"
+                                                        : undefined
+                                                }
+                                                onClick={closeAll}
+                                                aria-current={
+                                                    active ? "page" : undefined
+                                                }
+                                                className={`block px-3 py-4 text-sm font-bold uppercase tracking-wide ${
+                                                    active
+                                                        ? "bg-red-600 text-white"
+                                                        : "text-neutral-900"
+                                                }`}
+                                            >
+                                                {item.label}
+                                            </a>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
 
-                        <div className="container mx-auto space-y-6 px-4 py-6">
+                    {/* Address and socials at the bottom of the mobile menu */}
+                    <div className="bg-neutral-900">
+                        <div className="container mx-auto space-y-5 px-4 py-6">
                             <a
-                                href={mapsUrl}
+                                href={MAPS_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`flex items-start gap-2 text-sm leading-relaxed text-neutral-400 hover:text-white ${focusRing}`}
+                                className="flex items-start gap-2 text-sm leading-relaxed text-neutral-400 hover:text-white"
                             >
                                 <MapPin
                                     className="mt-0.5 h-4 w-4 shrink-0 text-red-500"
                                     aria-hidden="true"
                                 />
-                                {address}
+                                {ADDRESS}
                             </a>
 
-                            <ul className="flex items-center gap-2">
-                                {socials.map((s) => (
-                                    <li key={s.label}>
+                            <ul className="flex items-center gap-3">
+                                {SOCIALS.map((social) => (
+                                    <li key={social.label}>
                                         <a
-                                            href={s.href}
+                                            href={social.href}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            aria-label={s.label}
-                                            className={socialButton}
+                                            aria-label={social.label}
+                                            className="grid h-10 w-10 place-items-center rounded-full bg-neutral-800 text-neutral-200 ring-1 ring-white/10 transition-colors hover:bg-red-600 hover:text-white"
                                         >
-                                            {s.icon}
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth={1.75}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                aria-hidden="true"
+                                                className="h-4 w-4"
+                                            >
+                                                <path d={social.icon} />
+                                            </svg>
                                         </a>
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </div>
-                )}
-            </header>
-        </>
+                </div>
+            )}
+        </header>
     );
 }

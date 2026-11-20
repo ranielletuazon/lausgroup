@@ -55,7 +55,7 @@ export default function CompanyProfile() {
             <main className="w-full max-w-full font-['Barlow'] text-neutral-900">
                 {/* Page header */}
                 <section className="relative overflow-hidden border-b-4 border-red-600 bg-neutral-950 bg-[linear-gradient(115deg,transparent_62%,rgba(220,38,38,0.2)_62%,rgba(220,38,38,0.2)_70%,transparent_70%)] text-white">
-                    <div className="container mx-auto px-4 pb-20 pt-10 md:pb-28 md:pt-14">
+                    <div className="container mx-auto px-4 pb-14 pt-10 md:pb-20 md:pt-14">
                         <nav aria-label="Breadcrumb">
                             <ol className="flex flex-wrap items-center gap-2 text-sm text-neutral-400">
                                 <li>
@@ -72,7 +72,7 @@ export default function CompanyProfile() {
                                         href="/about-us"
                                         className="transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
                                     >
-                                        About Us
+                                        About us
                                     </a>
                                 </li>
                                 <li aria-hidden="true">/</li>
@@ -85,9 +85,6 @@ export default function CompanyProfile() {
                         <h1 className="mt-8 font-['Barlow_Condensed'] text-5xl font-bold leading-none md:text-7xl">
                             Company Profile
                         </h1>
-                        <p className="mt-4 text-neutral-400">
-                            <time dateTime="2022-08">August 2022</time>
-                        </p>
                     </div>
                 </section>
 
@@ -132,7 +129,7 @@ export default function CompanyProfile() {
                         >
                             <h2
                                 id="anniversary-heading"
-                                className="font-['Barlow_Condensed'] text-4xl font-bold leading-tight md:text-5xl"
+                                className="text-4xl font-bold leading-tight md:text-5xl"
                             >
                                 LausGroup of Companies celebrates 45 years of
                                 leadership in countryside development

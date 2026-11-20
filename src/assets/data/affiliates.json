@@ -1,62 +1,221 @@
 [
     {
+        "brandName": "Carworld Caltex",
+        "logoImage": "carworldcaltexlogo.jpg",
+        "category": "Auto Industry",
+        "href": "/carworld-caltex",
+        "banner": "caltexbanner.jpg",
+        "address": "McArthur Highway, San Agustin, City of San Fernando, Pampanga 2000, Philippines",
+        "contacts": [
+            {
+                "label": "Telefax",
+                "values": ["+63 45 961 4923"]
+            },
+            {
+                "label": "Mobile",
+                "values": ["+63 918 854 2623"]
+            }
+        ],
+        "website": "",
+        "description": [
+            "Acquired in 1981, Carworld Caltex is one of the first businesses ventured by the LausGroup Chairman and CEO, Mr. Levy P. Laus. It is situated along McArthur Highway, San Agustin, City of San Fernando.",
+            "In 2006, the company underwent a full renovation to further strengthen its services and to meet the growing demands of its valued customers. With its bright new look, up-to-date equipment and highly-trained employees, Carworld Caltex has, since then, received awards; one of which is the Caltex Mystery Motorist Award, a citation they received after having scored 100% in customer satisfaction.",
+            "LausAutoGroup continues to grow and expand with these ancillary businesses, strengthening its stand as the largest multi-brand automotive dealership network in the Philippines today. Its quality aftermarket products and services further strengthen the LausGroup of Companies, which continues to grow not only as a business for automobile sales and after-sales, but also as a diverse network of non-automotive businesses, such as non-life insurance, real estate, tri-media, restaurant, tires, and petroleum products."
+        ]
+    },
+    {
         "brandName": "Corporate Guarantee",
         "logoImage": "corporateguaranteelogo.jpg",
-        "category": "Auto Industry"
-    },
-    {
-        "brandName": "Carmix",
-        "logoImage": "carmixlogo.jpg",
-        "category": "Auto Industry"
-    },
-    {
-        "brandName": "LausGroup Event Centre",
-        "logoImage": "lgeclogo.jpg",
-        "category": "Event Centre"
-    },
-    {
-        "brandName": "Laus Auto Services",
-        "logoImage": "laslogo.jpg",
-        "category": "Auto Industry"
-    },
-    {
-        "brandName": "Laus Auto Finance",
-        "logoImage": "laflogo.jpg",
-        "category": "Auto Industry"
-    },
-    {
-        "brandName": "Microtel Pampanga",
-        "logoImage": "microtellogo.jpg",
-        "category": "Hotel"
+        "category": "Auto Industry",
+        "href": "https://corporateguarantee.com.ph"
     },
     {
         "brandName": "Family Ville Lubao",
         "logoImage": "familyvillelogo.jpg",
-        "category": "Real Estate"
-    },
-    {
-        "brandName": "Carworld Caltext Station Inc.",
-        "logoImage": "carworldcaltexlogo.jpg",
-        "category": "Auto Industry"
+        "category": "Real Estate",
+        "href": "/family-ville-lubao",
+        "banner": "",
+        "address": "",
+        "contacts": [],
+        "website": "",
+        "description": []
     },
     {
         "brandName": "Hüper Optik",
         "logoImage": "huperlogo.jpg",
-        "category": "Auto Industry"
+        "category": "Auto Industry",
+        "href": "/huper-optik",
+        "banner": "huperbanner.jpg",
+        "address": "LausGroup Corporate Center, Jose Abad Santos Avenue, City of San Fernando, Pampanga",
+        "contacts": [
+            {
+                "label": "Direct line",
+                "values": ["(045) 963-2010"]
+            },
+            {
+                "label": "Mobile",
+                "values": ["0918-854-2342"]
+            }
+        ],
+        "website": "",
+        "description": [
+            "Huper Optik Philippines, Inc. is a subsidiary of the LausGroup of Companies. It is the country distributor of Huper Optik® advanced nano-ceramic multi-layer window films, the first and only brand in its class that uses the patented advanced German nano-ceramic multi-layered technology in window films.",
+            "Huper Optik Philippines, Inc., through the LausGroup of Companies, officially sealed the partnership with Huper Optik International Pte Ltd on March 3, 2011 at the LausGroup Corporate Center, Jose Abad Santos Avenue, City of San Fernando, Pampanga.",
+            "## Huper Optik International Pte Ltd",
+            "Huper Optik International Pte Ltd was established in 1997, ushering the window film industry into a new era with the first and only patented advanced German nano-ceramic solar control window films for automotive, architectural and marine applications. The beginning of Huper Optik® was more than six years of research and development, a joint operation of four major corporations and institutions, namely:",
+            "- Fraunhofer Institute (Germany)",
+            "- Southwall Technologies Inc. (USA)",
+            "- PSB Corporation (Singapore)",
+            "- Novomatrix Pte Ltd (Singapore)",
+            "Huper Optik® is exclusively represented in many countries throughout the world."
+        ]
     },
     {
-        "brandName": "Goodyear Autocare - Tire City Inc",
+        "brandName": "Carmix",
+        "logoImage": "carmixlogo.jpg",
+        "category": "Auto Industry",
+        "href": "/carmix",
+        "banner": "",
+        "address": "",
+        "contacts": [],
+        "website": "",
+        "description": [],
+        "showInAutomotive": true
+    },
+    {
+        "brandName": "Laus Auto Finance",
+        "logoImage": "laflogo.jpg",
+        "category": "Auto Industry",
+        "href": "/laus-auto-finance",
+        "banner": "lafbanner.jpg",
+        "address": "1st Floor, Carworld Building, Jose Abad Santos Avenue, City of San Fernando, Pampanga",
+        "contacts": [
+            {
+                "label": "Mobile",
+                "values": [
+                    "+63 918 854 2377",
+                    "+63 918 854 2989",
+                    "+63 918 854 2122",
+                    "+63 918 854 2121"
+                ]
+            }
+        ],
+        "website": "",
+        "description": [
+            "Established on August 17, 1989, LausAuto Finance is engaged in auto-loan financing, check-discounting, and it also provides credit investigation services to LausGroup-affiliated companies.",
+            "LausAuto Finance is a duly authorized financing company registered with the Securities and Exchange Commission under Registration Number 163875 and authorized by Bangko Sentral ng Pilipinas (BSP). With its office housed at the ground floor of the Carworld Bldg, LausAuto Finance operates in accordance with its mission of bringing the company's services as close to its customers as possible, along with a broader vision of the LausGroup of promoting business growth and development in the country."
+        ]
+    },
+    {
+        "brandName": "Laus Auto Services",
+        "logoImage": "laslogo.jpg",
+        "category": "Auto Industry",
+        "href": "/laus-auto-services",
+        "banner": "",
+        "address": "",
+        "contacts": [],
+        "website": "",
+        "description": []
+    },
+    {
+        "brandName": "LausGroup Event Centre",
+        "logoImage": "lgeclogo.jpg",
+        "category": "Event Centre",
+        "href": "https://lausgroupeventcentre.com"
+    },
+    {
+        "brandName": "Microtel by Wyndham Pampanga",
+        "logoImage": "microtellogo.jpg",
+        "category": "Hotel",
+        "href": "/microtel-pampanga",
+        "banner": "",
+        "address": "",
+        "contacts": [],
+        "website": "",
+        "description": []
+    },
+    {
+        "brandName": "Tire City - Goodyear Autocare",
         "logoImage": "goodyearlogo.jpg",
-        "category": "Auto Industry"
+        "category": "Auto Industry",
+        "href": "/goodyear-autocare-tire-city",
+        "banner": "tirebanner.jpg",
+        "address": "Tire City, Inc. Compound, Dolores, City of San Fernando, Pampanga, 2000, Philippines",
+        "contacts": [
+            {
+                "label": "Direct line",
+                "values": ["(045) 961 2866"]
+            },
+            {
+                "label": "Fax",
+                "values": ["(045) 961 7409"]
+            },
+            {
+                "label": "Mobile Number",
+                "values": ["0918 854 2620"]
+            }
+        ],
+        "website": "",
+        "description": [
+            "Founded by LausGroup Chairman & CEO Levy P. Laus in 1983, the company started small in a spot located at Barangay San Agustin in San Fernando, Pampanga. Back then, it was known as LPLaus Marketing.",
+            "On August 8, 1988, a quadruple eight, it was renamed Tirecity Goodyear Servitek and this pioneering tire and Service Center came rolling out to serve.",
+            "What initially was a TBA (Tires, Batteries and Accessories) concept, Tire City has evolved into a one-stop auto care shop and with its renewed partnership with industry institution Goodyear early this year...Tire City Good Year Auto Care is now a complete hub—from tyres to services like under chassis and wheel alignments, brakes, cooling system checks to electrical and body works and painting...works guaranteed by Tire City's team of well-trained service technicians, ensuring every customers' vehicle that comes out of its service bays are runnning right and in tip-top shape...for the next journey.",
+            "Twenty five years later, Tire City San Fernando Good Year AutoCare, part of the Biggest Chain of Automotive dealership in the country, the trusted Laus Auto Group is still going and rolling.",
+            "Today, it is the recipient of various achievement awards on sales, credit, training and customer service from Goodyear.",
+            "Onto the next twenty five, Tire City-GoodYear Auto Care continues to prove the right tires, the right parts and the excellent service it has been known for, all fueled by the driving force. \"We'll keep you running\""
+        ]
     },
     {
-        "brandName": "Voltronic - Schmierstoffe Deutschland",
-        "logoImage": "voltroniclogo.jpg",
-        "category": "Auto Industry"
-    },
-    {
-        "brandName": "Yokohama Pampanga - Tire City",
+        "brandName": "Tire City - Yokohama Pampanga",
         "logoImage": "yokohamalogo.jpg",
-        "category": "Auto Industry"
+        "category": "Auto Industry",
+        "href": "/yokohama-pampanga-tire-city",
+        "banner": "yokobanner.jpg",
+        "address": "Tire City, Inc. Compound, Dolores, City of San Fernando, Pampanga, 2000, Philippines",
+        "contacts": [
+            {
+                "label": "Direct line",
+                "values": ["(045) 961 2866"]
+            },
+            {
+                "label": "Fax",
+                "values": ["(045) 961 7409"]
+            },
+            {
+                "label": "Mobile Number",
+                "values": ["0918 854 2620"]
+            }
+        ],
+        "website": "",
+        "description": [
+            "Founded by LausGroup Chairman & CEO Levy P. Laus in 1983, the company started small in a spot located at Barangay San Agustin in San Fernando, Pampanga. Back then, it was known as LPLaus Marketing.",
+            "On August 8, 1988, a quadruple eight, it was renamed Tirecity Goodyear Servitek and this pioneering tire and Service Center came rolling out to serve.",
+            "What initially was a TBA (Tires, Batteries and Accessories) concept, Tire City has evolved into a one-stop auto care shop and with its renewed partnership with industry institution Goodyear early this year...Tire City Good Year Auto Care is now a complete hub—from tyres to services like under chassis and wheel alignments, brakes, cooling system checks to electrical and body works and painting...works guaranteed by Tire City's team of well-trained service technicians, ensuring every customers' vehicle that comes out of its service bays are runnning right and in tip-top shape...for the next journey.",
+            "Twenty five years later, Tire City San Fernando Good Year AutoCare, part of the Biggest Chain of Automotive dealership in the country, the trusted Laus Auto Group is still going and rolling.",
+            "Today, it is the recipient of various achievement awards on sales, credit, training and customer service from Goodyear.",
+            "Onto the next twenty five, Tire City-GoodYear Auto Care continues to prove the right tires, the right parts and the excellent service it has been known for, all fueled by the driving force. \"We'll keep you running\""
+        ]
+    },
+    {
+        "brandName": "Voltronic",
+        "logoImage": "voltroniclogo.jpg",
+        "category": "Auto Industry",
+        "href": "/voltronic-schmierstoffe-deutschland",
+        "banner": "voltronicbanner.jpg",
+        "address": "LausGroup Corporate Center, Jose Abad Santos Avenue, City of San Fernando, Pampanga",
+        "contacts": [
+            {
+                "label": "Direct line",
+                "values": ["(045) 963-2010"]
+            },
+            {
+                "label": "Mobile Number",
+                "values": ["0918 854 2342"]
+            }
+        ],
+        "website": "",
+        "description": [
+            "VOLTRONIC is a well-established worldwide brand registered trademark of ACT (Aerosol Chemie Technik) GmbH Germany. ACT Germany founded in Goppingen city on 1963 by Mr. Rudolf Zweifel. The factory begins production on 1964. Well along the factory move to Bad Boll city on 1990 and since Mr. Roland Zweifel the son of Mr. Rudolf Zweifel took position as the CEO of the company until present moment. Bad Boll city is located around 50 kilometers from Stuttgart city, the heart of German automotive industry Daimler and Porsche group. ACT Germany currently supply to some of the largest Company in Germany, Europe and worldwide. At present the factory major products are oil, chemical and petrochemical, and extension products are lubricants, motor oil, engine oil, AFT automatic transmission fluid, trans-axile oil, transfer case oil, power steering and centralize hydraulic fluid, brake fluid, antifreeze coolant, grease, additives (engine flush, injector cleaner, fuel system cleaner, oil stop leak, diesel anti-freeze, power steering flush, power steering protect, automatic transmission flush, automatic transmission protect and etc.), HD high definition detailing and grooming products, industrial lube, industrial cleaner, car care products."
+        ]
     }
 ]

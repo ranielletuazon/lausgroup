@@ -2,16 +2,19 @@
     {
         "brandName": "CLTV36",
         "logoImage": "cltv36logo.jpg",
-        "category": "Media"
+        "category": "Media",
+        "href": "/cltv36"
     },
     {
         "brandName": "RW95.1",
         "logoImage": "rw951logo.jpg",
-        "category": "Media"
+        "category": "Media",
+        "href": "https://rw951.fm"
     },
     {
         "brandName": "Sunstar Pampanga",
         "logoImage": "sunstarlogo.jpg",
-        "category": "Media"
+        "category": "Media",
+        "href": "/sunstar-pampanga"
     }
 ]
