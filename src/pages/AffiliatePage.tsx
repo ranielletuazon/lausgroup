@@ -3,17 +3,25 @@ import { ExternalLink, MapPin, Phone } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NotFound from "./NotFound";
-import { affiliates } from "../assets/data";
+import { affiliates, mediaGroup } from "../assets/data";
 
 export default function AffiliatePage() {
     // The slug from the address bar: localhost/laus-auto-finance -> "laus-auto-finance"
     const { slug } = useParams();
 
     // Only these categories have their own pages for now. Add more here later.
-    const CATEGORIES_WITH_PAGES = ["Auto Industry"];
+    const CATEGORIES_WITH_PAGES = [
+        "Auto Industry",
+        "Hotel",
+        "Real Estate",
+        "Media",
+    ];
 
-    // The affiliate whose href matches this page. Affiliates with a full website href never match.
-    const affiliate = affiliates.find(
+    // Every brand that uses this page: affiliates and the media group
+    const BRANDS = [...affiliates, ...mediaGroup];
+
+    // The brand whose href matches this page. Brands with a full website href never match.
+    const affiliate = BRANDS.find(
         (item) =>
             item.href === `/${slug}` &&
             CATEGORIES_WITH_PAGES.includes(item.category ?? ""),
@@ -23,17 +31,19 @@ export default function AffiliatePage() {
     if (!affiliate) return <NotFound />;
 
     // This affiliate's page content, from affiliates.json (empty when not written yet)
-    const address = affiliate.address ?? "";
     const contacts = affiliate.contacts ?? [];
     const website = affiliate.website ?? "";
     const description = affiliate.description ?? [];
     const bannerUrl = affiliate.bannerUrl;
+    const mapEmbed = affiliate.mapEmbed ?? "";
 
-    // Google Maps search for the address
-    const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    // All addresses: the "addresses" list, or the single "address" when there's only one
+    const ADDRESSES =
+        affiliate.addresses ??
+        (affiliate.address ? [{ label: "", value: affiliate.address }] : []);
 
     // The other affiliates in the same category, for the strip at the bottom
-    const OTHER_AFFILIATES = affiliates.filter(
+    const OTHER_AFFILIATES = BRANDS.filter(
         (item) =>
             item.category === affiliate.category &&
             item.href !== affiliate.href &&
@@ -100,33 +110,50 @@ export default function AffiliatePage() {
                             )}
                         </div>
 
-                        {(address || contacts.length > 0 || website) && (
+                        {(ADDRESSES.length > 0 ||
+                            contacts.length > 0 ||
+                            website) && (
                             <div className="divide-y divide-neutral-200 rounded-md bg-white shadow-sm ring-1 ring-neutral-200">
                                 {/* Address */}
-                                {address && (
+                                {ADDRESSES.length > 0 && (
                                     <div className="p-6">
                                         <h2 className="flex items-center gap-2 font-['Barlow_Condensed'] text-xl font-bold uppercase">
                                             <MapPin
                                                 className="h-5 w-5 text-red-600"
                                                 aria-hidden="true"
                                             />
-                                            Address
+                                            {ADDRESSES.length > 1
+                                                ? "Addresses"
+                                                : "Address"}
                                         </h2>
-                                        <address className="mt-3 not-italic leading-relaxed text-neutral-700">
-                                            {address}
-                                        </address>
-                                        <a
-                                            href={MAPS_URL}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 underline underline-offset-4 hover:text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
-                                        >
-                                            Get Directions
-                                            <ExternalLink
-                                                className="h-4 w-4"
-                                                aria-hidden="true"
-                                            />
-                                        </a>
+
+                                        {/* Each address with its own label and directions link */}
+                                        <ul className="mt-3 space-y-5">
+                                            {ADDRESSES.map((item) => (
+                                                <li key={item.value}>
+                                                    {item.label && (
+                                                        <p className="text-xs font-bold uppercase tracking-wide text-neutral-500">
+                                                            {item.label}
+                                                        </p>
+                                                    )}
+                                                    <address className="not-italic leading-relaxed text-neutral-700">
+                                                        {item.value}
+                                                    </address>
+                                                    <a
+                                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.value)}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 underline underline-offset-4 hover:text-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-600"
+                                                    >
+                                                        Get Directions
+                                                        <ExternalLink
+                                                            className="h-4 w-4"
+                                                            aria-hidden="true"
+                                                        />
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 )}
 
@@ -200,12 +227,12 @@ export default function AffiliatePage() {
                                 bannerUrl ? "mt-6" : ""
                             }`}
                         >
-                            <h2 className="font-['Barlow_Condensed'] text-3xl font-bold uppercase md:text-4xl">
+                            <h2 className="font-['Barlow_Condensed'] text-3xl font-bold uppercase md:text-4xl md:text-center">
                                 About {affiliate.brandName}
                             </h2>
 
                             {description.length > 0 ? (
-                                <div className="mt-6 max-w-3xl space-y-5 text-lg leading-relaxed text-neutral-700">
+                                <div className="mt-6 max-w-full space-y-5 text-lg leading-relaxed text-neutral-700 text-justify">
                                     {description.map((line) =>
                                         line.startsWith("## ") ? (
                                             // Small heading
@@ -250,6 +277,20 @@ export default function AffiliatePage() {
                                 </div>
                             )}
                         </div>
+
+                        {/* Map, if the affiliate has one */}
+                        {mapEmbed && (
+                            <div className="mt-6 overflow-hidden rounded-md bg-white shadow-sm ring-1 ring-neutral-200">
+                                <iframe
+                                    src={mapEmbed}
+                                    title={`Map of ${affiliate.brandName}`}
+                                    loading="lazy"
+                                    allowFullScreen
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    className="block h-[360px] w-full border-0 md:h-[480px]"
+                                />
+                            </div>
+                        )}
                     </article>
                 </div>
 

@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 
 export default function ContactUs() {
     // The contact form lives on the CRM and is shown here in an iframe
-    const FORM_URL = "https://crm.lausgroup.com.ph/ContactUs";
+    const FORM_URL = "https://crm.lausgroup.com.ph/ContactUsNew/";
 
     return (
         <>

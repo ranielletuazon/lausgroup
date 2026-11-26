@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { ExternalLink, MapPin, Phone } from "lucide-react";
+import { Clock, ExternalLink, MapPin, Phone } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NotFound from "./NotFound";
@@ -193,6 +193,16 @@ export default function FoodGroupPage() {
                                             >
                                                 {branch.phone}
                                             </a>
+                                        </p>
+                                    )}
+
+                                    {branch.hours && (
+                                        <p className="mt-2 flex items-center gap-2">
+                                            <Clock
+                                                className="h-4 w-4 shrink-0 text-red-600"
+                                                aria-hidden="true"
+                                            />
+                                            {branch.hours}
                                         </p>
                                     )}
 

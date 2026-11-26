@@ -34,11 +34,25 @@
         "logoImage": "familyvillelogo.jpg",
         "category": "Real Estate",
         "href": "/family-ville-lubao",
-        "banner": "",
-        "address": "",
-        "contacts": [],
+        "banner": "familybanner.jpg",
+        "addresses": [
+            {
+                "label": "Sales Office",
+                "value": "Family Ville Lubao, San Isidro, Lubao, Pampanga 2005, Philippines"
+            },
+            {
+                "label": "Corporate Office",
+                "value": "Carworld Bldg., Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines"
+            }
+        ],
+        "contacts": [
+            { "label": "Direct line", "values": ["+63 45 971 5249"] },
+            { "label": "Mobile", "values": ["+63 918 854 2820"] },
+            { "label": "Trunk line (local 552)", "values": ["+63 45 963 2525"] }
+        ],
         "website": "",
-        "description": []
+        "description": [],
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1V98Ky-u-dlQwRtRNKkOudlfML3Oaqxc&ehbc=2E312F"
     },
     {
         "brandName": "Hüper Optik",
@@ -129,10 +143,35 @@
         "category": "Hotel",
         "href": "/microtel-pampanga",
         "banner": "",
-        "address": "",
-        "contacts": [],
+        "address": "LGC Blvd., LausGroup Complex, Jose Abad Santos Avenue, San Jose, City of San Fernando, Pampanga 2000 Philippines",
+        "contacts": [
+            {
+                "label": "Mobile",
+                "values": ["0999 223 0308"]
+            },
+            {
+                "label": "Tel",
+                "values": ["(045) 402 8888"]
+            },
+            {
+                "label": "Fax",
+                "values": ["(045) 589 2000"]
+            },
+            {
+                "label": "Email",
+                "values": ["pampanga@microtel.ph"]
+            }
+        ],
         "website": "",
-        "description": []
+        "description": [
+            "Wethere you're gearing up for a meeting or need time to unwind, this 80-room hotel will help make your stay brilliantly efficient. Do more and relax more with Microtel by Wyndham Pampanga's smartly designed rooms, thoughtful amenities, warm hospitality and highly convenient location.",
+            "Have a cool swim at the pool. Attend meetings and events in the hotel's function room or at the LausGroup Event Centre right next door. Go on a heritage tour and explore the outdoors to see Pampanga's rich history and top attractions. And while you're in the country's culinary capital, don't forget to enjoy must-try Kapampangan dishes and local delicacies.",
+            "## Brilliant Amenities",
+            "Wheter you're attending an event or exploring San Fernando, you'll love our relaxing outdoor pool, spacious meeting room, and modern guest rooms.",
+            "Each non-smoking guest room is outfitted with chiropractor-approved healthy-for-the-back bed/s, a safety deposit box, HDTV, mini-refrigerator, desk, and chair. All guests can enjoy high-speed internet access and free parking in the hotel. Get recommendations on what to see by asking our friendly front desk staff.",
+            "Also, guests can count on our commitment to health and safety with our enhanced cleaning processes and workplace protocols."
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1LkFLeBQPQcnfAfn3c5cADvs5fBvMEDo&ehbc=2E312F"
     },
     {
         "brandName": "Tire City - Goodyear Autocare",

@@ -17,6 +17,21 @@ export interface Branch {
     address: string;
     /** International format works best for tap-to-call, e.g. "+63 45 963 2020" */
     phone: string;
+    hours?: string;
+}
+
+export interface Address {
+    label: string;
+    value: string;
+}
+
+// One department of a motorbike dealership: Sales, Service or Parts
+export interface Department {
+    name: string; // shown on the tab, e.g. "Sales"
+    address: string;
+    /** International format works best for tap-to-call, e.g. "+63 918 854 2950" */
+    phones: string[];
+    hours: string[]; // one line each, e.g. "Monday – Friday: 8:30 AM – 5:30 PM"
 }
 
 // One brand, as it is written in the JSON files
@@ -44,8 +59,8 @@ export interface RawBrand {
     description?: string[];
 
     // ----- Affiliate pages -----
-
     address?: string;
+    addresses?: Address[];
     contacts?: Contact[];
     /** Full URL of the affiliate's own website, "" for none */
     website?: string;
@@ -55,8 +70,15 @@ export interface RawBrand {
     // ----- Food group pages -----
 
     branches?: Branch[];
-    /** The "src" of the Google Maps embed iframe, "" for none */
+    /** The "src" of the Google Maps embed iframe, "" for none (also used by affiliate and motorbike pages) */
     mapEmbed?: string;
+
+    // ----- Motorbike pages -----
+
+    /** Sales, Service and Parts details. Only the departments listed here get a tab. */
+    departments?: Department[];
+    /** The "src" of the contact form iframe, "" for none */
+    formUrl?: string;
 }
 
 // One brand, ready to use: the same fields plus the image addresses for <img src>

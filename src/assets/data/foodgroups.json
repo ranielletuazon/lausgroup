@@ -4,10 +4,38 @@
         "logoImage": "coffeelogo.jpg",
         "category": "Restaurants",
         "href": "/the-coffee-bean-and-tea-leaf",
-        "banner": "",
+        "banner": "cbbanner.jpg",
         "description": [],
-        "branches": [],
-        "mapEmbed": ""
+        "branches": [
+            {
+                "name": "The Coffee Bean and Tea Leaf LausGroup Complex",
+                "address": "The Event Centre Boulevard, City of San Fernando, Pampanga",
+                "phone": "(045) 649 4127",
+                "hours": "8:00 AM - 1:00 AM Daily"
+            },
+            {
+                "name": "The Coffee Bean and Tea Leaf Clark Auto Zone",
+                "address": "M.A Roxas Highway, Clark Freeport Zone, 2023, Pampanga",
+                "phone": "(045) 499 8535"
+            },
+            {
+                "name": "The Coffee Bean and Tea Leaf SM City Pampanga",
+                "address": "AX3 105 SM City Pampanga, infront of UniQlo",
+                "phone": "(045) 649 1347"
+            },
+            {
+                "name": "The Coffee Bean and Tea Leaf SM City Telabastagan",
+                "address": "186-187 SM City Telabastagan, infront of BDO",
+                "phone": "(046) 403 9858"
+            },
+            {
+                "name": "The Coffee Bean and Tea Leaf SM City Baliwag",
+                "address": "101-102A G/F, SM City Baliwag, 21 Doña Remedios Trinidad Hwy, Baliwag, 1630 Bulacan",
+                "phone": "(+63) 916 918 0901"
+            }
+        ],
+
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1OZL_Z0HUSm13JzeJtecbpT0D1_hn_lYt&ehbc=2E312F"
     },
     {
         "brandName": "Nono's Comfort Kitchen & Bakery",
@@ -55,10 +83,16 @@
         "logoImage": "yellowcablogo.jpg",
         "category": "Restaurants",
         "href": "/yellow-cab-pizza-co",
-        "banner": "",
+        "banner": "yellowbanner.jpg",
         "description": [],
-        "branches": [],
-        "mapEmbed": ""
+        "branches": [
+            {
+                "name": "Yellow Cab",
+                "address": "LGC Automotive Service Bldg., M. A. Roxas Highway, Clark Freeport Zone, Pampanga",
+                "phone": "(063) 499 8524"
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/embed?mid=1NPrB7Ugah0X0TNB9NjDqFFcMRZDDlAA&ehbc=2E312F"
     },
     {
         "brandName": "Pancake House",
@@ -71,7 +105,8 @@
             {
                 "name": "Pancake House LausGroup Complex",
                 "address": "The Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, San Jose, City of San Fernando, Pampanga",
-                "phone": "(063) 402 6933"
+                "phone": "(063) 402 6933",
+                "hours": "8:00 AM - 9:00 PM"
             },
             {
                 "name": "Pancake House Clark Auto Zone",

@@ -2,46 +2,136 @@
     {
         "brandName": "Aprilia Pampanga",
         "logoImage": "aprillalogo.jpg",
-        "href": "/aprilia-pampanga"
+        "href": "/aprilia-pampanga",
+        "banner": "apriliabanner.jpg",
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=APRL-PAM",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": ["+63 918 854 2950 (SALES, SERVICE, PARTS)"],
+                "hours": [
+                    "Monday to Friday: 8:30 AM – 5:30 PM",
+                    "Saturday: 8:30 AM – 5:00 PM"
+                ]
+            }
+        ],
+        "mapEmbed": ""
     },
     {
         "brandName": "BMW Pampanga Premier Motorrad",
         "logoImage": "bmwmotorlogo.jpg",
-        "href": "/bmw-pampanga-premier-motorrad"
+        "href": "/bmw-pampanga-premier-motorrad",
+        "banner": "bmwbanner.jpg",
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=BMW-MTRD",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga",
+                "phones": ["+63 918 854 2938 (SALES, SERVICE, PARTS)"],
+                "hours": [
+                    "Monday to Friday: 8:30 AM – 5:30 PM",
+                    "Saturday: 8:30 AM – 5:00 PM"
+                ]
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/u/0/embed?mid=1DwnWn3M9flVe435NZPdrrdvfYKWLqDQ&ehbc=2E312F"
     },
     {
         "brandName": "Moto Guzzi Pampanga",
         "logoImage": "",
-        "href": "/moto-guzzi-pampanga"
+        "href": "/moto-guzzi-pampanga",
+        "banner": "motobanner.jpg",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": ["+63 918 854 2950"],
+                "hours": [
+                    "Monday to Friday: 8:30 AM – 5:30 PM",
+                    "Saturday: 8:30 AM – 5:00 PM"
+                ]
+            }
+        ],
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=MTO-PAM"
     },
     {
         "brandName": "Harley-Davidson Pampanga",
         "logoImage": "harleylogo.jpg",
-        "href": "/harley-davidson-of-pampanga"
+        "href": "/harley-davidson-of-pampanga",
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=HLY-SFP",
+        "banner": "harleybanner.jpg",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": ["+63 999 223 0322 (SALES, SERVICE, PARTS)"],
+                "hours": [
+                    "Monday to Friday: 8:30 AM – 5:30 PM",
+                    "Saturday: 8:30 AM – 5:00 PM"
+                ]
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/u/0/embed?mid=1DwnWn3M9flVe435NZPdrrdvfYKWLqDQ&ehbc=2E312F"
     },
     {
         "brandName": "Vespa Pampanga",
         "logoImage": "vespalogo.jpg",
-        "href": "/vespa-pampanga"
-    },
-    {
-        "brandName": "Peugeot Motorcycles",
-        "logoImage": "peugeotmotorlogo.jpg",
-        "href": "/peugeot-motorcycles"
-    },
-    {
-        "brandName": "Piaggio Ape Pampanga",
-        "logoImage": "",
-        "href": "/piaggio-ape-pampanga"
+        "href": "/vespa-pampanga",
+        "banner": "vespabanner.jpg",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": ["+63 919 089 4509 (SALES, SERVICE, PARTS)"],
+                "hours": [
+                    "Monday to Friday: 8:30 AM – 5:30 PM",
+                    "Saturday: 8:30 AM – 5:00 PM"
+                ]
+            }
+        ],
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=VSP-PAM",
+        "mapEmbed": "https://www.google.com/maps/d/u/0/embed?mid=1DwnWn3M9flVe435NZPdrrdvfYKWLqDQ&ehbc=2E312F"
     },
     {
         "brandName": "CFMoto",
         "logoImage": "cfmotologo.jpg",
-        "href": "/cfmoto"
+        "href": "/cfmoto",
+        "banner": "cfmotobanner.jpg",
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=CFMOTO-HO",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": [
+                    "+63 919 065 0034 (SALES, SERVICE, PARTS)",
+                    "+63 939 905 2907 (SALES, SERVICE, PARTS)"
+                ],
+                "hours": [
+                    "Monday to Friday : 8:30 AM - 5:30 PM",
+                    "Saturday : 8:30 AM - 5:00 PM"
+                ]
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/u/0/embed?mid=1DwnWn3M9flVe435NZPdrrdvfYKWLqDQ&ehbc=2E312F"
     },
     {
         "brandName": "Triumph Pampanga",
         "logoImage": "triumphlogo.jpg",
-        "href": "/triumph-pampanga"
+        "banner": "triumphbanner.jpg",
+        "href": "/triumph-pampanga",
+        "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=TRMP-PAM",
+        "departments": [
+            {
+                "name": "Contact Number/s",
+                "address": "LausGroup Motorcycle Centre, Microtel Lane, Event Centre Boulevard, LausGroup Complex, Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+                "phones": ["+63 939 905 2907 (SALES, SERVICE, PARTS)"],
+                "hours": [
+                    "Monday to Friday : 8:30 AM - 5:30 PM",
+                    "Saturday : 8:30 AM - 5:00 PM"
+                ]
+            }
+        ],
+        "mapEmbed": "https://www.google.com/maps/d/u/0/embed?mid=1DwnWn3M9flVe435NZPdrrdvfYKWLqDQ&ehbc=2E312F"
     }
 ]

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Data
-import { foodGroup } from "./assets/data";
+import { foodGroup, motorbikes } from "./assets/data";
 
 // Pages
 import Home from "./pages/Home";
@@ -14,6 +14,7 @@ import ContactUs from "./pages/ContactUs";
 import NewsEvents from "./pages/NewsEvents";
 import AffiliatePage from "./pages/AffiliatePage";
 import FoodGroupPage from "./pages/FoodGroupPage";
+import MotorbikePage from "./pages/MotorbikePage";
 
 function App() {
     return (
@@ -42,6 +43,15 @@ function App() {
                             key={restaurant.href}
                             path={restaurant.href}
                             element={<FoodGroupPage />}
+                        />
+                    ))}
+
+                    {/* Motorbike pages: one route per dealership in motorbikes.json */}
+                    {motorbikes.map((dealership) => (
+                        <Route
+                            key={dealership.href}
+                            path={dealership.href}
+                            element={<MotorbikePage />}
                         />
                     ))}
 

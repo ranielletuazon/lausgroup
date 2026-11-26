@@ -3,7 +3,23 @@
         "brandName": "CLTV36",
         "logoImage": "cltv36logo.jpg",
         "category": "Media",
-        "href": "/cltv36"
+        "href": "/cltv36",
+        "banner": "cltvbanner.jpg",
+        "address": "3rd Floor, CGIC Bldg., Jose Abad Santos Avenue, City of San Fernando, Pampanga 2000, Philippines",
+        "contacts": [{ "label": "Telefax", "values": ["(045) 963 990"] }],
+        "website": "https://www.cltv36.tv",
+        "description": [
+            "## CLTV, Championing Local Pride!",
+            "CLTV36 was born on March 19, 2007.",
+            "Its founder, Levy P. Laus, a visionary businessman with a mission of enabling public good, established the first and only regional TV station in the country. He built CLTV alongside his major businesses at the heart of Central Luzon in San Fernando, Pampanga.",
+            "CLTV dove into the complex world of broadcasting with its crew of young and dedicated broadcast journalists, engineers and videographers. Facing the long-established giant networks, CLTV sought to carve out its own niche in the TV audience universe.",
+            "CLTV steadily built a core viewership in its own home, Pampanga. Time and again, the Capampangans showed their loyalty and strong support of the young channel by first, embracing the shows and programs, special coverages and events produced and aired by the station. Second, partnering and participating in the various projects and activities launched by the station, and third, significantly becoming the top advertisers of CLTV.",
+            "In 2013, the station introduced Starmill, a region-wide talent search to further boost its pursuit of becoming the most watched TV station in Central Luzon. In 2015, CLTV purchased a new 10-kilowatt transmitter and a new 28-panel antenna to further improve its signal strength in Central Luzon. It relocated its transmission system to the Clark Freeport Zone, towering above the whole of Central Luzon.",
+            "CLTV gained new audiences from the other provinces, and ranked as the number 1 TV channel in the key cities and municipalities of Pampanga. In July 2016, CLTV appeared for the first time in the Television Audience meter of Nielsen Philippines, ranking number 12 amongst 118 channels in the Nielsen survey of the Urban North and Central Luzon Audience Measurement. Seventy-five to 80% of the total television audience universe of CLTV come from Pampanga and other Kapampangan-speaking areas of Central Luzon.",
+            "In 2020, the channel partnered with the Department of Education for Teleskwela to provide students in Pampanga, from Grade 1 to Grade 12, a safe place to continue their learning through innovative teaching modules using television as a medium.",
+            "Now on its 14th year, CLTV highlights its accessibility on the go in various digital platforms, while reinforcing its news and public affairs roots as a TV station that is on the side of truth and seeks to shape opinions with its \"Anytime, Anywhere, Choose Truth\" campaign."
+        ],
+        "mapEmbed": ""
     },
     {
         "brandName": "RW95.1",
@@ -15,6 +31,15 @@
         "brandName": "Sunstar Pampanga",
         "logoImage": "sunstarlogo.jpg",
         "category": "Media",
-        "href": "/sunstar-pampanga"
+        "href": "/sunstar-pampanga",
+        "banner": "sunstarbanner.jpg",
+        "address": "2nd Floor, Tita's Bldg. II, Jose Abad Santos Avenue (formerly Gapan-Olongapo Road), Dolores, City of San Fernando, Pampanga 2000, Philippines",
+        "contacts": [{ "label": "Telephone", "values": ["+63 45 961 6741"] }],
+        "website": "https://www.sunstar.com.ph",
+        "description": [
+            "Sun.Star Pampanga, formerly called Sun.Star Clark, is the only daily newspaper in Pampanga that covers news from the four districts of the province. Having been in the business for 15 years, it continues to provide balanced and up-to-date news, and continues in its mission and vision of being the voice of the province of the Kapampangan community.",
+            "Sun.Star Pampanga continues to cater to the A, B, and C crowd. It is also part of the Sun.Star Network Online at www.sunstar.com.ph, the Internet home of the only network of community newspapers in the Philippines."
+        ],
+        "mapEmbed": ""
     }
 ]
