@@ -41,7 +41,7 @@ export default function Header() {
         { label: "Home", href: "/" },
         {
             label: "About us",
-            href: "/about-us/company-profile",
+            href: "/about-us",
             description: "Learn who we are and what drives the group.",
             columns: "columns-1",
             links: [

@@ -11,7 +11,7 @@ export default function ContactUs() {
             <main className="w-full max-w-full bg-neutral-100 font-['Barlow'] text-neutral-900">
                 {/* Page header */}
                 <section className="relative overflow-hidden border-b-4 border-red-600 bg-neutral-950 bg-[linear-gradient(115deg,transparent_62%,rgba(220,38,38,0.2)_62%,rgba(220,38,38,0.2)_70%,transparent_70%)] text-white">
-                    <div className="container mx-auto px-4 pb-20 pt-10 md:pb-28 md:pt-14">
+                    <div className="container mx-auto px-4 pb-18 pt-10 md:pb-20 md:pt-14">
                         <nav aria-label="Breadcrumb">
                             <ol className="flex flex-wrap items-center gap-2 text-sm text-neutral-400">
                                 <li>
@@ -29,14 +29,14 @@ export default function ContactUs() {
                             </ol>
                         </nav>
 
-                        <h1 className="mt-8 font-['Barlow_Condensed'] text-5xl font-bold uppercase leading-none md:text-7xl">
+                        <h1 className="mt-8 text-5xl font-bold uppercase leading-none md:text-7xl">
                             Contact us
                         </h1>
-                        <p className="mt-4 max-w-xl text-lg text-neutral-300">
+                        {/* <p className="mt-4 max-w-xl text-lg text-neutral-300">
                             Questions about a vehicle, a quotation or our
                             services? Send us a message and our team will get
                             back to you.
-                        </p>
+                        </p> */}
                     </div>
                 </section>
 
@@ -61,7 +61,7 @@ export default function ContactUs() {
                                     src={FORM_URL}
                                     title="LausGroup contact form"
                                     loading="lazy"
-                                    className="relative block w-full border-0 h-[1500px] sm:h-[1150px] md:h-[950px] lg:h-[830px]"
+                                    className="relative block h-[2050px] w-full border-0 md:h-[1500px]"
                                 />
                             </div>
                         </div>

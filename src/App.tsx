@@ -15,6 +15,10 @@ import NewsEvents from "./pages/NewsEvents";
 import AffiliatePage from "./pages/AffiliatePage";
 import FoodGroupPage from "./pages/FoodGroupPage";
 import MotorbikePage from "./pages/MotorbikePage";
+import About from "./pages/About";
+import Automotive from "./pages/Automotive";
+import Motorbikes from "./pages/Motorbikes";
+import Affiliates from "./pages/Affiliates";
 
 function App() {
     return (
@@ -22,6 +26,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/about-us" element={<About />} />
+                    <Route path="/automotive" element={<Automotive />} />
+                    <Route path="/motorbikes" element={<Motorbikes />} />
+                    <Route path="/affiliates" element={<Affiliates />} />
                     <Route
                         path="/about-us/company-profile"
                         element={<CompanyProfile />}

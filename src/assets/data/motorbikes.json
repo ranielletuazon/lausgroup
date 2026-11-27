@@ -1,7 +1,7 @@
 [
     {
         "brandName": "Aprilia Pampanga",
-        "logoImage": "aprillalogo.jpg",
+        "logoImage": "aprillalogo.webp",
         "href": "/aprilia-pampanga",
         "banner": "apriliabanner.jpg",
         "formUrl": "https://crm.lausgroup.com.ph/ContactUsNew/?dealerid=APRL-PAM",
@@ -39,7 +39,7 @@
     },
     {
         "brandName": "Moto Guzzi Pampanga",
-        "logoImage": "",
+        "logoImage": "motoguzzilogo.jpg",
         "href": "/moto-guzzi-pampanga",
         "banner": "motobanner.jpg",
         "departments": [

@@ -31,7 +31,7 @@ export default function MotorbikePage() {
     return (
         <>
             <Header />
-            <main className="w-full max-w-full bg-neutral-100 font-['Barlow'] text-neutral-900">
+            <main className="w-full max-w-full bg-neutral-100 text-neutral-900">
                 {/* ===== Banner with the name on top (dark band when there's no banner) ===== */}
                 <section className="relative overflow-hidden border-b-4 border-red-600 bg-neutral-950 text-white">
                     {bannerUrl && (
@@ -83,7 +83,7 @@ export default function MotorbikePage() {
                         <p className="mt-6 inline-block self-start rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase tracking-wide">
                             Motorbikes
                         </p>
-                        <h1 className="mt-4 font-['Barlow_Condensed'] text-5xl font-bold uppercase leading-none drop-shadow md:text-7xl">
+                        <h1 className="mt-4 text-5xl font-bold uppercase leading-none drop-shadow md:text-7xl">
                             {dealership.brandName}
                         </h1>
                     </div>
@@ -101,7 +101,7 @@ export default function MotorbikePage() {
                                     className="max-h-full max-w-full object-contain mix-blend-multiply"
                                 />
                             ) : (
-                                <span className="text-center font-['Barlow_Condensed'] text-3xl font-bold">
+                                <span className="text-center text-3xl font-bold">
                                     {dealership.brandName}
                                 </span>
                             )}
@@ -258,16 +258,12 @@ export default function MotorbikePage() {
                                         Loading the contact form…
                                     </p>
 
-                                    {/*
-                                      The form comes from another website, so the iframe can't size
-                                      itself. The column is narrower on lg than on xl, so lg needs more
-                                      height. If the form gets cut off or leaves a gap, adjust these.
-                                    */}
+                                    {/* The form is on another website, so the iframe has a fixed height: taller on phones, where the fields stack */}
                                     <iframe
                                         src={formUrl}
                                         title={`${dealership.brandName} contact form`}
                                         loading="lazy"
-                                        className="relative block h-[1500px] w-full border-0 sm:h-[1150px] md:h-[950px] lg:h-[1150px] xl:h-[950px] 2xl:h-[860px]"
+                                        className="relative block h-[2050px] w-full border-0 md:h-[1500px]"
                                     />
                                 </div>
                             ) : (
@@ -289,7 +285,7 @@ export default function MotorbikePage() {
                 {/* ===== Map ===== */}
                 {mapEmbed && (
                     <section className="container mx-auto px-4 pb-10 md:pb-14">
-                        <h2 className="font-['Barlow_Condensed'] text-3xl font-bold uppercase md:text-4xl">
+                        <h2 className="text-3xl font-bold uppercase md:text-4xl">
                             Visit our showroom
                         </h2>
                         <div className="mt-6 overflow-hidden rounded-md bg-white shadow-sm ring-1 ring-neutral-200">
